@@ -1,0 +1,13 @@
+.Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: gray;
+    padding: 1vw 2vw 1vw 2vw;
+    margin-bottom: 4vh;
+}
+
+.Header__not-logged-in {
+    display: flex;
+}
+
