@@ -28,6 +28,20 @@ const WorkoutApiService = {
             )
     },
 
+    deleteWorkout(id) {
+        return fetch (`${config.API_ENDPOINT}/workout/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(event => Promise.reject(event))
+                    : null
+            )
+    },
+
     getExerciseSets() {
         return fetch (`${config.API_ENDPOINT}/set`, {
             headers: {

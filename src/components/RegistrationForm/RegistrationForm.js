@@ -12,7 +12,7 @@ export default class RegistrationForm extends Component {
     handleSubmit = event => {
         event.preventDefault()
         const { username, user_password, email, user_password_match } = event.target
-        console.log(user_password, user_password_match)
+        
         if (user_password.value !== user_password_match.value) {
             this.setState( {error: 'Passwords must match' })
             return

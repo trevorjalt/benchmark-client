@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import WorkoutContext from '../../contexts/WorkoutContext'
 import WorkoutApiService from '../../services/workout-api-service'
-import { NiceDate, Section } from '../Utils/Utils'
+import { NiceDate, Section, Button } from '../Utils/Utils'
 import { parseISO } from 'date-fns'
 import Exercise from '../Exercise/Exercise'
 import './Workout.css'
@@ -11,6 +11,8 @@ import './Workout.css'
 export default class Workout extends Component {
     static contextType = WorkoutContext
 
+    state = { touched: null }
+
     componentDidMount() {
         this.context.clearError()
         WorkoutApiService.getExercises()
@@ -18,10 +20,29 @@ export default class Workout extends Component {
             .catch(this.context.setError)
     }
 
+    handleClickDelete = event => {
+        event.preventDefault()
+        const { workoutList = [] } = this.context
+        const { workout } = this.props
+        const newList = workoutList.filter((item) => item.id !== workout.id)
+        this.context.clearError()
+        WorkoutApiService.deleteWorkout(workout.id)
+            .then(this.context.onDeleteWorkout(newList))
+            .catch(this.context.setError)
+    }
+
+    handleWorkoutTouched = (e) => {
+        this.setTouched(true)
+    }
+
+    setTouched = () => {
+        this.setState({ touched: !this.state.touched })
+    }
+    
     renderWorkouts() {
         const { error } = this.context
         const { workout } = this.props
-        if (this.context.touched) {
+        if (this.state.touched) {
             return (
                 <div>                       
                     <WorkoutDate workout={workout} />
@@ -30,6 +51,13 @@ export default class Workout extends Component {
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderExercises()}
                     </Section>
+                    <Button 
+                        className='ExerciseItem__delete' 
+                        type='button'
+                        onClick={this.handleClickDelete}
+                    >
+                        Delete
+                    </Button>
                 </div>    
             )
         } else {
@@ -37,10 +65,9 @@ export default class Workout extends Component {
             <div>                       
                 <WorkoutDate workout={workout} />
             </div> 
-        )
+        )}
     }
 
-    }
 
     renderExercises() {
         const { exerciseList = [] } = this.context
@@ -54,16 +81,6 @@ export default class Workout extends Component {
             />
         )
     }
-
-    handleWorkoutTouched = (e) => {
-        this.context.setTouched(true)
-        // this.findById(e)
-
-    }
-
-    // findById = (value) => {
-    //     return this.props.workout.id === value
-    // }
 
     render() {
         const { workout } = this.props

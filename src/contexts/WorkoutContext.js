@@ -6,13 +6,12 @@ const WorkoutContext = React.createContext({
     exerciseSetList: [],
     error: null,
     isLoggedIn: null,
-    touched: null,
     setError: () => {},
     clearError: () => {},
     setIsLoggedIn: () => {},
-    setTouched: () => {},
     setWorkoutList: () => {},
     setExerciseList: () => {},
+    onDeleteWorkout: () => {},
 })
 export default WorkoutContext
 
@@ -23,7 +22,6 @@ export class WorkoutProvider extends Component {
         exerciseSetList: [],
         error: null,
         isLoggedIn: null,
-        touched: null
     }
 
     setError = error => {
@@ -39,10 +37,6 @@ export class WorkoutProvider extends Component {
         this.setState({ isLoggedIn: value })
     }
 
-    setTouched = () => {
-        this.setState({ touched: !this.state.touched })
-    }
-
     setWorkoutList = workoutList => {
         this.setState({ workoutList})
     }
@@ -53,6 +47,10 @@ export class WorkoutProvider extends Component {
 
     setExerciseSetList = exerciseSetList  => {
         this.setState({ exerciseSetList })
+    }
+
+    onDeleteWorkout = (value) => {
+        this.setWorkoutList(value)
     }
 
     render() {
@@ -66,10 +64,10 @@ export class WorkoutProvider extends Component {
             setError: this.setError,
             clearError: this.clearError,
             setIsLoggedIn: this.setIsLoggedIn,
-            setTouched: this.setTouched,
             setWorkoutList: this.setWorkoutList,
             setExerciseList: this.setExerciseList, 
-            setExerciseSetList: this.setExerciseSetList,         
+            setExerciseSetList: this.setExerciseSetList,
+            onDeleteWorkout: this.onDeleteWorkout,         
         }
         return (
             <WorkoutContext.Provider value={value}>

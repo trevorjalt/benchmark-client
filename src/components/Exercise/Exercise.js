@@ -41,6 +41,7 @@ export default class Exercise extends Component {
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderExerciseSets()}
                 </Section>
+                <span>Exercise Vol: # lbs</span>
 
             </div>
         )
