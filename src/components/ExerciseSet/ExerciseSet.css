@@ -2,3 +2,24 @@
     display: flex;
     justify-content: space-between;
 } */
+
+.SetItemUpdateForm {
+    display: flex;
+    justify-content: center;
+}
+
+input {
+  border: 1px solid #ddd;
+  /* display: block; */
+  font-size: 1.1em;
+  margin-bottom: 10px; 
+  padding: 1vh 0 1vh 0;
+  text-align: left;
+  /* width: 95vw; */
+  border-radius: 4px;
+}
+
+.Input::placeholder {
+  color: #ccc;
+}
+

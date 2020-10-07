@@ -12,6 +12,7 @@ const WorkoutContext = React.createContext({
     setWorkoutList: () => {},
     setExerciseList: () => {},
     onDeleteWorkout: () => {},
+    onUpdateWorkoutSets: () => {},
 })
 export default WorkoutContext
 
@@ -53,6 +54,10 @@ export class WorkoutProvider extends Component {
         this.setWorkoutList(value)
     }
 
+    // onClickUpdateWorkoutSets = (value) => {
+    //     this.setExerciseSetList(value)
+    // }
+
     render() {
         const value = {
             workoutList: this.state.workoutList,
@@ -67,7 +72,8 @@ export class WorkoutProvider extends Component {
             setWorkoutList: this.setWorkoutList,
             setExerciseList: this.setExerciseList, 
             setExerciseSetList: this.setExerciseSetList,
-            onDeleteWorkout: this.onDeleteWorkout,         
+            onDeleteWorkout: this.onDeleteWorkout,
+            onUpdateWorkoutSets: this.onUpdateWorkoutSets,         
         }
         return (
             <WorkoutContext.Provider value={value}>

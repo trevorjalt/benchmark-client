@@ -17,7 +17,6 @@ class App extends Component {
     state = { 
       hasError: false,
       isLoggedIn: false,
-      touched: false,
     }
   
     static getDerivedStateFromError(error) {

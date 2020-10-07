@@ -11,7 +11,10 @@ import './Workout.css'
 export default class Workout extends Component {
     static contextType = WorkoutContext
 
-    state = { touched: null }
+    state = { 
+        touched: null,
+        edit: null,
+    }
 
     componentDidMount() {
         this.context.clearError()
@@ -28,14 +31,26 @@ export default class Workout extends Component {
         this.context.clearError()
         WorkoutApiService.deleteWorkout(workout.id)
             .then(this.context.onDeleteWorkout(newList))
-            .catch(this.context.setError)
+            // .catch(this.context.setError())
     }
 
-    handleWorkoutTouched = (e) => {
-        this.setTouched(true)
+    handleClickEdit = () => {
+        this.setState({ edit: !this.state.edit })
+        console.log(this.props)
     }
 
-    setTouched = () => {
+    handleClickUpdate = (updatedExerciseSet) => {
+        // event.preventDefault()
+        this.context.clearError()
+        console.log(updatedExerciseSet)
+        WorkoutApiService.updateWorkoutSet(updatedExerciseSet)
+            .then(this.setState({ edit: !this.state.edit }))
+            .then(this.context.setExerciseSetList())
+            // .catch(this.context.setError())
+
+    }
+
+    handleClickTouched = () => {
         this.setState({ touched: !this.state.touched })
     }
     
@@ -51,13 +66,17 @@ export default class Workout extends Component {
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderExercises()}
                     </Section>
+                    {this.state.edit
+                        ? this.renderUpdateButton()
+                        : this.renderEditButton()
+                    }
                     <Button 
                         className='ExerciseItem__delete' 
                         type='button'
                         onClick={this.handleClickDelete}
                     >
                         Delete
-                    </Button>
+                    </Button>   
                 </div>    
             )
         } else {
@@ -78,16 +97,39 @@ export default class Workout extends Component {
             <Exercise
                 key={exercise.id}
                 exercise={exercise}
+                edit={this.state.edit}
+                handleClickUpdate={this.handleClickUpdate}
             />
         )
     }
 
-    render() {
-        const { workout } = this.props
-        const { error } = this.context
-
+    renderEditButton() {
         return (
-            <div className='Workout__item' onClick={this.handleWorkoutTouched}>                    
+            <Button 
+                className='ExerciseItem__edit' 
+                type='button'
+                onClick={this.handleClickEdit}
+            >
+                Edit
+            </Button>
+        )
+    }
+
+    renderUpdateButton() {
+        return (
+            <Button 
+                className='ExerciseItem__update' 
+                type='button'
+                onClick={this.handleClickUpdate}
+            >
+                Update
+            </Button>
+        )
+    }
+
+    render() {
+        return (
+            <div className='Workout__item' onDoubleClick={this.handleClickTouched}>                    
                 {this.renderWorkouts()}
             </div>    
         )

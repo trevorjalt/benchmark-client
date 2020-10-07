@@ -66,7 +66,7 @@ export default class Header extends Component {
                         benchMark
                     </Link>
                 </h1>
-                {this.context.isLoggedIn
+                {TokenService.hasAuthToken()
                     ? this.renderLogoutLink()
                     : this.renderLoginLink()}
             </nav>            
