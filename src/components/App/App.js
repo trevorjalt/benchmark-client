@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch, useRouteMatch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import PrivateRoute from '../Utils/PrivateRoute'
@@ -16,7 +16,8 @@ import './App.css'
 class App extends Component {
     state = { 
       hasError: false,
-      isLoggedIn: false
+      isLoggedIn: false,
+      touched: false,
     }
   
     static getDerivedStateFromError(error) {

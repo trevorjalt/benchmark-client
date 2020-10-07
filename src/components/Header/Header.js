@@ -26,7 +26,7 @@ export default class Header extends Component {
                 |
                 <Link
                     to='/newworkout'>
-                    New
+                    newWorkout
                 </Link>
                 |
                 <Link

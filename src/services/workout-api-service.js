@@ -27,6 +27,19 @@ const WorkoutApiService = {
                     : res.json()
             )
     },
+
+    getExerciseSets() {
+        return fetch (`${config.API_ENDPOINT}/set`, {
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },            
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(event => Promise.reject(event))
+                    : res.json()
+            )
+    },
 }
 
 export default WorkoutApiService

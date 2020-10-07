@@ -18,11 +18,35 @@ export default class Workout extends Component {
             .catch(this.context.setError)
     }
 
+    renderWorkouts() {
+        const { error } = this.context
+        const { workout } = this.props
+        if (this.context.touched) {
+            return (
+                <div>                       
+                    <WorkoutDate workout={workout} />
+                    <Section list className='MyExercises'>
+                        {error
+                        ? <p className='red'>Whoops! There was an error</p>
+                        : this.renderExercises()}
+                    </Section>
+                </div>    
+            )
+        } else {
+        return (
+            <div>                       
+                <WorkoutDate workout={workout} />
+            </div> 
+        )
+    }
+
+    }
+
     renderExercises() {
         const { exerciseList = [] } = this.context
-        console.log(exerciseList)
 
-        const workoutExercises = exerciseList.filter(exercise => exercise.workout_id === this.props.workout.id)
+        const workoutExercises = exerciseList.filter(
+            exercise => exercise.workout_id === this.props.workout.id)
         return workoutExercises.map(exercise => 
             <Exercise
                 key={exercise.id}
@@ -31,30 +55,34 @@ export default class Workout extends Component {
         )
     }
 
+    handleWorkoutTouched = (e) => {
+        this.context.setTouched(true)
+        // this.findById(e)
+
+    }
+
+    // findById = (value) => {
+    //     return this.props.workout.id === value
+    // }
+
     render() {
         const { workout } = this.props
         const { error } = this.context
-        console.log(this.props)
 
         return (
-            <div className='Workout__item'>                  
-                <WorkoutDate workout={workout} />
-                <Section list className='MyExercises'>
-                    {error
-                    ? <p className='red'>Whoops! There was an error</p>
-                    : this.renderExercises()}
-                </Section>
-            </div>
+            <div className='Workout__item' onClick={this.handleWorkoutTouched}>                    
+                {this.renderWorkouts()}
+            </div>    
         )
     }
 }
 
 function WorkoutDate({ workout }) {
     return (
-        <span className='Workout__date'>
+        <h2 className='Workout__date'>
             <NiceDate
                 date={parseISO(workout.date_created)}
             />
-        </span>
+        </h2>
     )
 }
