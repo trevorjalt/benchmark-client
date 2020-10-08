@@ -8,6 +8,7 @@ import LandingPage from '../../routes/LandingPage/LandingPage'
 import LoginPage from '../../routes/LoginPage/LoginPage'
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage'
 import MyWorkoutsPage from '../../routes/MyWorkoutsPage/MyWorkoutsPage'
+import NewWorkoutPage from '../../routes/NewWorkoutPage/NewWorkoutPage'
 import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
 import IdleService from '../../services/idle-service'
@@ -103,6 +104,10 @@ class App extends Component {
                       <PrivateRoute
                         path={'/myworkouts'}
                         component={MyWorkoutsPage}
+                      />
+                      <PrivateRoute
+                        path={'/newworkout'}
+                        component={NewWorkoutPage}
                       />
                     </Switch>
                 </main>
