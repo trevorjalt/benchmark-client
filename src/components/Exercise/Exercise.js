@@ -26,6 +26,7 @@ export default class Exercise extends Component {
                 exerciseSet={exerciseSet}
                 edit={this.props.edit}
                 handleClickUpdate={this.props.handleClickUpdate}
+                handleUpdateSet={this.props.handleUpdateSet}
             />
         
         )

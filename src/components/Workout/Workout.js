@@ -14,6 +14,12 @@ export default class Workout extends Component {
     state = { 
         touched: null,
         edit: null,
+        updateSet: [], 
+        testUpdate: {
+            id: 1,
+            set_weight: 55,
+            set_repetition: 60,
+        } 
     }
 
     componentDidMount() {
@@ -23,32 +29,56 @@ export default class Workout extends Component {
             .catch(this.context.setError)
     }
 
+    handleUpdateSet = (value) => {
+        this.setState({ updateSet: value })
+    }
+
+    // handleUpdateSet(target, payload) {
+    //     const newState = Object.assign(this.state, {});
+    //     newState[target] = payload
+    //     this.setState(newState)
+    // }
+
     handleClickDelete = event => {
         event.preventDefault()
-        const { workoutList = [] } = this.context
+        const { workoutList = [], onDeleteWorkout, clearError } = this.context
         const { workout } = this.props
         const newList = workoutList.filter((item) => item.id !== workout.id)
-        this.context.clearError()
+        clearError()
         WorkoutApiService.deleteWorkout(workout.id)
-            .then(this.context.onDeleteWorkout(newList))
+            .then(onDeleteWorkout(newList))
             // .catch(this.context.setError())
     }
 
     handleClickEdit = () => {
         this.setState({ edit: !this.state.edit })
-        console.log(this.props)
     }
 
-    handleClickUpdate = (updatedExerciseSet) => {
-        // event.preventDefault()
+    handleClickUpdate = event => {
+        event.preventDefault()
+        const { workoutList = [] } = this.context
         this.context.clearError()
-        console.log(updatedExerciseSet)
+        const updatedExerciseSet = {
+            id: this.state.updateSet.id,
+            set_weight: this.state.updateSet.set_weight,
+            set_repetition: this.state.updateSet.set_repetition
+        }
+       
         WorkoutApiService.updateWorkoutSet(updatedExerciseSet)
-            .then(this.setState({ edit: !this.state.edit }))
-            .then(this.context.setExerciseSetList())
+            .then(this.handleClickEdit())
+            .then(this.context.onUpdateWorkoutSets(workoutList))
             // .catch(this.context.setError())
-
     }
+
+    // handleClickUpdate = (updatedExerciseSet) => {
+    //     // event.preventDefault()
+    //     this.context.clearError()
+       
+    //     WorkoutApiService.updateWorkoutSet(updatedExerciseSet)
+    //         .then(this.context.setExerciseSetList())
+    //         // .catch(this.context.setError())
+
+    // }
 
     handleClickTouched = () => {
         this.setState({ touched: !this.state.touched })
@@ -99,6 +129,7 @@ export default class Workout extends Component {
                 exercise={exercise}
                 edit={this.state.edit}
                 handleClickUpdate={this.handleClickUpdate}
+                handleUpdateSet={this.handleUpdateSet}
             />
         )
     }

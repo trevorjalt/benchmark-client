@@ -7,21 +7,53 @@ import './ExerciseSet.css'
 export default class ExerciseSet extends Component {
     static contextType = WorkoutContext
 
-    handleClickUpdate = event => {
-        event.preventDefault()
-        const { exerciseSet } = this.props
-        const updatedExerciseSet = {
-            id: exerciseSet.id,
-            set_weight: Number(event.target.SetItem__weight.value),
-            set_repetition: Number(event.target.repetition.value),
-            // exercise_id: exerciseSet.exercise_id,
-            // user_id: exerciseSet.user_id,
-        }
-        console.log(updatedExerciseSet)
-        console.log(this.props)
-        this.props.handleClickUpdate(updatedExerciseSet)
-        
+    state = {
+        set_weight: 0,
+        set_repetition: 0,
     }
+
+    handleWeightChange(event) {
+        this.setState({ set_weight: Number(event.target.value)}, this.props.handleUpdateSet)
+        // this.setState({ set_repetition: event.target.value})
+    }
+    
+    handleRepChange(event) {
+        this.setState({ set_repetition: Number(event.target.value)})
+        // this.props.handleUpdateSet(this.state.set_repetition)
+    }
+
+    handleFormChange(event) {
+        const { exerciseSet } = this.props
+        const updateSet = {
+            id: exerciseSet.id,
+            set_weight: this.state.set_weight,
+            set_repetition: this.state.set_repetition,
+        }
+        this.props.handleUpdateSet(updateSet)
+        // this.forceUpdate()
+    }
+
+    // handleUpdateChange = () => {
+    //     const updateSet = { set_weight: this.state.set_weight, set_repetition: this.state.set_repetition }
+    //     this.props.handleUpdateSet(updateSet)
+    //     // const updateSet =  {this.handleWeightChange
+    // }
+
+    // handleClickUpdate = event => {
+    //     event.preventDefault()
+    //     const { exerciseSet, edit } = this.props
+    //     const updatedExerciseSet = {
+    //         id: exerciseSet.id,
+    //         // set_weight: Number(event.target.SetItem__weight.value),
+    //         // set_repetition: Number(event.target.repetition.value),
+    //         set_weight: this.state.set_weight,
+    //         set_repetition: this.state.set_repetition,
+    //     }
+    //     console.log(updatedExerciseSet)
+    //     console.log(this.props)
+    //     this.props.handleClickUpdate(updatedExerciseSet)
+        
+    // }
     renderExerciseSetState() {
         const { edit, exerciseSet } = this.props
         const vol = (exerciseSet.set_weight * exerciseSet.set_repetition)
@@ -31,7 +63,7 @@ export default class ExerciseSet extends Component {
                <div>
                 <form
                 className='SetItemUpdateForm'
-                onSubmit={event => this.handleClickUpdate(event)}
+                onInput={event => this.handleFormChange(event)}
                 >
                 {/* <div role='alert'>
                     {error && <p className='red'>{error}</p>}
@@ -42,9 +74,11 @@ export default class ExerciseSet extends Component {
                     </label>
                     <input
                         required
-                        name='weight'
+                        name='set_weight'
                         id='SetItem__weight'
-                        defaultValue={exerciseSet.set_weight}>
+                        defaultValue={exerciseSet.set_weight}
+                        onChange={this.handleWeightChange.bind(this)}
+                        >
                         
                     </input>
                     <span> lbs </span>
@@ -55,10 +89,12 @@ export default class ExerciseSet extends Component {
                     </label>
                     <input
                         required
-                        name='repetition'
+                        name='set_repetition'
                         type='integer'
                         id='SetItem__repetition'
-                        defaultValue={exerciseSet.set_repetition}>
+                        defaultValue={exerciseSet.set_repetition}
+                        onChange={this.handleRepChange.bind(this)}
+                        >
                     </input>
                 </div>
                 <Button
