@@ -120,6 +120,10 @@ export default class Workout extends Component {
                         ? this.renderUpdateButton()
                         : this.renderEditButton()
                     }
+                    {this.state.edit
+                        ? this.renderCancelButton()
+                        : ''
+                    }
                     <Button 
                         className='ExerciseItem__delete' 
                         type='button'
@@ -176,6 +180,18 @@ export default class Workout extends Component {
                 onClick={this.handleClickUpdate}
             >
                 Update
+            </Button>
+        )
+    }
+
+    renderCancelButton() {
+        return (
+            <Button 
+                className='ExerciseItem__cancel' 
+                type='button'
+                onClick={this.handleClickEdit}
+            >
+                Cancel
             </Button>
         )
     }
