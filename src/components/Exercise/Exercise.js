@@ -25,8 +25,9 @@ export default class Exercise extends Component {
                 key={exerciseSet.id}
                 exerciseSet={exerciseSet}
                 edit={this.props.edit}
+                onRepetitionChange={this.props.onRepetitionChange}
+                onWeightChange={this.props.onWeightChange}
                 handleClickUpdate={this.props.handleClickUpdate}
-                handleUpdateSet={this.props.handleUpdateSet}
             />
         
         )

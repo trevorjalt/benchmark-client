@@ -7,31 +7,32 @@ import './ExerciseSet.css'
 export default class ExerciseSet extends Component {
     static contextType = WorkoutContext
 
-    state = {
-        set_weight: 0,
-        set_repetition: 0,
-    }
+    // state = {
+    //     set_weight: 0,
+    //     set_repetition: 0,
+    // }
 
-    handleWeightChange(event) {
-        this.setState({ set_weight: Number(event.target.value)}, this.props.handleUpdateSet)
+    onWeightInputChange = event => {
+        console.log(this.props.exerciseSet.id)
+        this.props.onWeightChange(this.props.exerciseSet.id, Number(event.target.value), this.props.exerciseSet.exercise_id)
         // this.setState({ set_repetition: event.target.value})
     }
     
-    handleRepChange(event) {
-        this.setState({ set_repetition: Number(event.target.value)})
+    onRepetitionInputChange = event => {
+        this.props.onRepetitionChange(this.props.exerciseSet.id, Number(event.target.value), this.props.exerciseSet.exercise_id)
         // this.props.handleUpdateSet(this.state.set_repetition)
     }
 
-    handleFormChange(event) {
-        const { exerciseSet } = this.props
-        const updateSet = {
-            id: exerciseSet.id,
-            set_weight: this.state.set_weight,
-            set_repetition: this.state.set_repetition,
-        }
-        this.props.handleUpdateSet(updateSet)
-        // this.forceUpdate()
-    }
+    // handleFormChange(event) {
+    //     const { exerciseSet } = this.props
+    //     const updateSet = {
+    //         id: exerciseSet.id,
+    //         set_weight: this.state.set_weight,
+    //         set_repetition: this.state.set_repetition,
+    //     }
+    //     this.props.handleUpdateSet(updateSet)
+    //     // this.forceUpdate()
+    // }
 
     // handleUpdateChange = () => {
     //     const updateSet = { set_weight: this.state.set_weight, set_repetition: this.state.set_repetition }
@@ -63,7 +64,7 @@ export default class ExerciseSet extends Component {
                <div>
                 <form
                 className='SetItemUpdateForm'
-                onInput={event => this.handleFormChange(event)}
+                // onInput={event => this.handleFormChange(event)}
                 >
                 {/* <div role='alert'>
                     {error && <p className='red'>{error}</p>}
@@ -77,7 +78,7 @@ export default class ExerciseSet extends Component {
                         name='set_weight'
                         id='SetItem__weight'
                         defaultValue={exerciseSet.set_weight}
-                        onChange={this.handleWeightChange.bind(this)}
+                        onChange={this.onWeightInputChange.bind(this)}
                         >
                         
                     </input>
@@ -93,7 +94,7 @@ export default class ExerciseSet extends Component {
                         type='integer'
                         id='SetItem__repetition'
                         defaultValue={exerciseSet.set_repetition}
-                        onChange={this.handleRepChange.bind(this)}
+                        onChange={this.onRepetitionInputChange.bind(this)}
                         >
                     </input>
                 </div>

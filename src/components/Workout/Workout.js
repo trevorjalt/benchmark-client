@@ -14,12 +14,7 @@ export default class Workout extends Component {
     state = { 
         touched: null,
         edit: null,
-        updateSet: [], 
-        testUpdate: {
-            id: 1,
-            set_weight: 55,
-            set_repetition: 60,
-        } 
+        updateSet: {}
     }
 
     componentDidMount() {
@@ -29,15 +24,31 @@ export default class Workout extends Component {
             .catch(this.context.setError)
     }
 
-    handleUpdateSet = (value) => {
-        this.setState({ updateSet: value })
+    onRepetitionChange = (id, set_repetition, exercise_id) => {
+        this.setState({
+            updateSet: {
+                ...this.state.updateSet,
+                [id]: {
+                ...this.state.updateSet[id],
+                set_repetition: set_repetition,
+                exercise_id: exercise_id
+                }
+            }
+        })
     }
 
-    // handleUpdateSet(target, payload) {
-    //     const newState = Object.assign(this.state, {});
-    //     newState[target] = payload
-    //     this.setState(newState)
-    // }
+    onWeightChange = (id, set_weight, exercise_id) => {
+        this.setState({
+            updateSet: {
+                ...this.state.updateSet,
+                [id]: {
+                ...this.state.updateSet[id],
+                set_weight: set_weight,
+                exercise_id: exercise_id
+            }
+            }
+        })
+    }
 
     handleClickDelete = event => {
         event.preventDefault()
@@ -54,20 +65,29 @@ export default class Workout extends Component {
         this.setState({ edit: !this.state.edit })
     }
 
+    // mergeArrayObjects(arr1,arr2){
+    //     return arr1.map((item,i) => {
+    //         if(item.id === arr2[i].id){
+    //            //merging two objects
+    //         return Object.assign({},item,arr2[i])
+    //        }
+    //     })
+    // }
+
     handleClickUpdate = event => {
         event.preventDefault()
-        const { workoutList = [] } = this.context
-        this.context.clearError()
-        const updatedExerciseSet = {
-            id: this.state.updateSet.id,
-            set_weight: this.state.updateSet.set_weight,
-            set_repetition: this.state.updateSet.set_repetition
-        }
-       
-        WorkoutApiService.updateWorkoutSet(updatedExerciseSet)
-            .then(this.handleClickEdit())
-            .then(this.context.onUpdateWorkoutSets(workoutList))
-            // .catch(this.context.setError())
+        const { exerciseSetList = [], clearError, onUpdateWorkoutSets } = this.context
+        clearError()
+        const setsToUpdate = Object.keys(this.state.updateSet).map(key => ({ id: Number(key), ...this.state.updateSet[key] }))
+        const updateList = exerciseSetList.map(el => setsToUpdate.find(e => e.id === el.id) || el) 
+        // const displayList = this.mergeArrayObjects(exerciseSetList, updateList)
+        const displayList = exerciseSetList.map((item, i) => {
+            return (item.id === updateList[i].id) && Object.assign({},item,updateList[i])})
+            
+        setsToUpdate.map(element => WorkoutApiService.updateWorkoutSet(element)
+            .then(this.handleClickEdit)
+            .then(onUpdateWorkoutSets(displayList))
+        )
     }
 
     // handleClickUpdate = (updatedExerciseSet) => {
@@ -128,8 +148,10 @@ export default class Workout extends Component {
                 key={exercise.id}
                 exercise={exercise}
                 edit={this.state.edit}
+                onRepetitionChange={this.onRepetitionChange}
+                onWeightChange={this.onWeightChange}
                 handleClickUpdate={this.handleClickUpdate}
-                handleUpdateSet={this.handleUpdateSet}
+        
             />
         )
     }

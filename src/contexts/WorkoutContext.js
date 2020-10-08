@@ -55,7 +55,7 @@ export class WorkoutProvider extends Component {
     }
 
     onUpdateWorkoutSets = (value) => {
-        this.setWorkoutList(value)
+        this.setExerciseSetList(value)
     }
 
     render() {
