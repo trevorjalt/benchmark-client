@@ -15,16 +15,22 @@ const WorkoutApiService = {
             )
     },
 
-    getExercises() {
-        return fetch (`${config.API_ENDPOINT}/exercise`, {
+    postWorkout() {
+        return fetch (`${config.API_ENDPOINT}/workout`, {
+            method: 'POST',
             headers: {
+                'content-type': 'application/json',
                 'authorization': `bearer ${TokenService.getAuthToken()}`
-            },            
+            }, 
+            // body: JSON.stringify({
+            //     set_weight: update.set_weight,
+            //     set_repetition: update.set_repetition,
+            // }) 
         })
             .then(res =>
                 (!res.ok)
                     ? res.json().then(event => Promise.reject(event))
-                    : res.json()
+                    : null
             )
     },
 
@@ -39,6 +45,32 @@ const WorkoutApiService = {
                 (!res.ok)
                     ? res.json().then(event => Promise.reject(event))
                     : null
+            )
+    },
+
+    getExercises() {
+        return fetch (`${config.API_ENDPOINT}/exercise`, {
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },            
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(event => Promise.reject(event))
+                    : res.json()
+            )
+    },
+
+    getExerciseSets() {
+        return fetch (`${config.API_ENDPOINT}/set`, {
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },            
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(event => Promise.reject(event))
+                    : res.json()
             )
     },
 
@@ -58,19 +90,6 @@ const WorkoutApiService = {
                 (!res.ok)
                     ? res.json().then(event => Promise.reject(event))
                     : null
-            )
-    },
-
-    getExerciseSets() {
-        return fetch (`${config.API_ENDPOINT}/set`, {
-            headers: {
-                'authorization': `bearer ${TokenService.getAuthToken()}`
-            },            
-        })
-            .then(res =>
-                (!res.ok)
-                    ? res.json().then(event => Promise.reject(event))
-                    : res.json()
             )
     },
 }
