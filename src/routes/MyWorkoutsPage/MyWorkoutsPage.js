@@ -17,6 +17,7 @@ export default class MyWorkoutsPage extends Component {
 
     renderWorkouts() {
         const { workoutList = [] } = this.context
+        
         return workoutList.map(workout =>
             <Workout 
                 key={workout.id}
@@ -27,6 +28,7 @@ export default class MyWorkoutsPage extends Component {
 
     render() {
         const { error } = this.context
+        
         return (
             <div>
                 <h1>myWorkouts</h1>

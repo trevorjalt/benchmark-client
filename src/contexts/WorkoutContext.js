@@ -4,13 +4,15 @@ const WorkoutContext = React.createContext({
     workoutList: [],
     exerciseList: [],
     exerciseSetList: [],
+    newWorkoutItem: {},
     error: null,
     isLoggedIn: null,
-    setError: () => {},
     clearError: () => {},
+    setError: () => {},
     setIsLoggedIn: () => {},
     setWorkoutList: () => {},
     setExerciseList: () => {},
+    setNewWorkoutItem: () => {},
     onDeleteWorkout: () => {},
     onUpdateWorkoutSets: () => {},
 })
@@ -21,17 +23,18 @@ export class WorkoutProvider extends Component {
         workoutList: [],
         exerciseList: [],
         exerciseSetList: [],
+        newWorkoutItem: {},
         error: null,
         isLoggedIn: null,
+    }
+
+    clearError = () => {
+        this.setState({ error: null })
     }
 
     setError = error => {
         console.error(error)
         this.setState({ error })
-    }
-
-    clearError = () => {
-        this.setState({ error: null })
     }
 
     setIsLoggedIn = (value) => {
@@ -50,6 +53,10 @@ export class WorkoutProvider extends Component {
         this.setState({ exerciseSetList })
     }
 
+    setNewWorkoutItem = newWorkoutItem => {
+        this.setState({ newWorkoutItem})
+    }
+
     onDeleteWorkout = (value) => {
         this.setWorkoutList(value)
     }
@@ -63,15 +70,17 @@ export class WorkoutProvider extends Component {
             workoutList: this.state.workoutList,
             exerciseList: this.state.exerciseList,
             exerciseSetList: this.state.exerciseSetList,
+            newWorkoutItem: this.state.newWorkoutItem,
             error: this.state.error,
             isLoggedIn: this.state.isLoggedIn,
             touched: this.state.touched,
-            setError: this.setError,
             clearError: this.clearError,
+            setError: this.setError,
             setIsLoggedIn: this.setIsLoggedIn,
             setWorkoutList: this.setWorkoutList,
             setExerciseList: this.setExerciseList, 
             setExerciseSetList: this.setExerciseSetList,
+            setNewWorkoutItem: this.setNewWorkoutItem,
             onDeleteWorkout: this.onDeleteWorkout,
             onUpdateWorkoutSets: this.onUpdateWorkoutSets,         
         }

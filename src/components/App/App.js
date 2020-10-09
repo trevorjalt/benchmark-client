@@ -15,7 +15,8 @@ import IdleService from '../../services/idle-service'
 import './App.css'
 
 class App extends Component {
-    state = { 
+  
+  state = { 
       hasError: false,
       isLoggedIn: false,
     }
