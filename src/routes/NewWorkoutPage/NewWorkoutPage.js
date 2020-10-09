@@ -24,7 +24,7 @@ export default class NewWorkoutPage extends Component {
     handleClickNew = event => {
         event.preventDefault()
         const { clearError } = this.context
-        console.log(this.props)
+
         clearError()
         WorkoutApiService.postWorkout()
             .then(data => this.setState({ workoutItem: data }))       

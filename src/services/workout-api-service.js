@@ -21,11 +21,7 @@ const WorkoutApiService = {
             headers: {
                 'content-type': 'application/json',
                 'authorization': `bearer ${TokenService.getAuthToken()}`
-            }, 
-            // body: JSON.stringify({
-            //     set_weight: update.set_weight,
-            //     set_repetition: update.set_repetition,
-            // }) 
+            },  
         })
             .then(res =>
                 (!res.ok)
@@ -66,6 +62,25 @@ const WorkoutApiService = {
             headers: {
                 'authorization': `bearer ${TokenService.getAuthToken()}`
             },            
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(event => Promise.reject(event))
+                    : res.json()
+            )
+    },
+
+    postExercise(exercise) {
+        return fetch (`${config.API_ENDPOINT}/exercise`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            }, 
+            body: JSON.stringify({
+                workout_id: exercise.workout_id,
+                exercise_name: exercise.exercise_name,
+            }) 
         })
             .then(res =>
                 (!res.ok)

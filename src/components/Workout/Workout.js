@@ -14,7 +14,9 @@ export default class Workout extends Component {
     state = { 
         touched: null,
         edit: null,
-        updateSet: {}
+        updateSet: {},
+        addExercise: {},
+        newExerciseList: {},
     }
 
     componentDidMount() {
@@ -22,6 +24,15 @@ export default class Workout extends Component {
         WorkoutApiService.getExercises()
             .then(this.context.setExerciseList)
             .catch(this.context.setError)
+    }
+
+    handleClickAddExercise = event => {
+        event.preventDefault()
+        const { clearError } = this.context
+        console.log(this.state.addExercise)
+        clearError()
+        WorkoutApiService.postExercise(this.state.addExercise)
+            .then(data => this.setState({ newExerciseList: data }))
     }
 
     handleClickDelete = event => {
@@ -48,6 +59,10 @@ export default class Workout extends Component {
     //        }
     //     })
     // }
+
+    handleClickTouched = () => {
+        this.setState({ touched: !this.state.touched })
+    }
 
     handleClickUpdate = event => {
         event.preventDefault()
@@ -76,10 +91,6 @@ export default class Workout extends Component {
 
     // }
 
-    handleClickTouched = () => {
-        this.setState({ touched: !this.state.touched })
-    }
-
     onRepetitionChange = (id, set_repetition, exercise_id) => {
         this.setState({
             updateSet: {
@@ -89,6 +100,16 @@ export default class Workout extends Component {
                 set_repetition: set_repetition,
                 exercise_id: exercise_id
                 }
+            }
+        })
+    }
+
+    onSelectExerciseChange = (event) => {
+        const { workout } = this.props
+        this.setState({
+            addExercise: {
+                exercise_name: event.target.value,
+                workout_id: workout.id
             }
         })
     }
@@ -127,12 +148,25 @@ export default class Workout extends Component {
     renderWorkouts() {
         const { error } = this.context
         const { workout } = this.props
-        console.log(this.props)
         
         if(this.props.newWorkout) {
             return (
                 <div>                       
                     <WorkoutDate workout={workout} />
+                    <form className='AddNewExerciseForm' onChange={e => this.onSelectExerciseChange(e)}>
+                            <label htmlFor='Exercise__select'></label>
+                            <select name="Exercise__select" id="Exercise__select" 
+                            // onChange={(event) => this.context.filterSelect(event.target.value)}
+                            >
+                                <option value="squat">Squat</option>
+                                <option value="bench">Bench</option>
+                                <option value="row">Row</option>
+                                <option value="deadlift">DeadLift</option>
+                                <option value="military_press">Military Press</option>
+                                <option value="clean">Clean</option>
+                            </select>
+
+                    </form>
                     {this.renderAddExerciseButton()} 
                 </div>
             )
@@ -169,7 +203,7 @@ export default class Workout extends Component {
             <Button 
                 className='ExerciseItem__add' 
                 type='button'
-                // onClick={this.handleClickEdit}
+                onClick={this.handleClickAddExercise}
             >
                 Add Exercise
             </Button>

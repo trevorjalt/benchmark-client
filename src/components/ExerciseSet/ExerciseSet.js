@@ -61,7 +61,7 @@ export default class ExerciseSet extends Component {
 
         if (edit) {
             return (
-               <div>
+               <div className='SetItemUpdateForm'>
                 <form
                 className='SetItemUpdateForm'
                 // onInput={event => this.handleFormChange(event)}
