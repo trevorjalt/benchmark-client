@@ -23,28 +23,21 @@ export default class NewWorkoutPage extends Component {
 
     handleClickNew = event => {
         event.preventDefault()
-        const { setNewWorkoutItem, clearError } = this.context
+        const { clearError } = this.context
         console.log(this.props)
         clearError()
         WorkoutApiService.postWorkout()
-            .then(data => this.setState({ workoutItem: data }))
-            // .then(data => WorkoutApiService.getWorkout(data.id) && setNewWorkoutItem(data))
-            // .then(this.setState({ newWorkout: !this.state.newWorkout }))        
+            .then(data => this.setState({ workoutItem: data }))       
     }
 
     renderNewWorkout() {
-        const { newWorkoutItem } = this.context
-        console.log('STATE', this.state)
-        console.log(this.state.workoutItem.id)
 
         return (
-            <div>
-                 {/* <p>{newWorkoutItem.date_created}</p> */}
-           
-            <Workout 
-                key={this.state.workoutItem.id}
-                workout={this.state.workoutItem}
-            />
+            <div> 
+                <Workout 
+                    key={this.state.workoutItem.id}
+                    workout={this.state.workoutItem}
+                />
             </div>
         )
     }
