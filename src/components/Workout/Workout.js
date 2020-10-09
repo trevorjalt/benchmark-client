@@ -129,7 +129,14 @@ export default class Workout extends Component {
         const { workout } = this.props
         console.log(this.props)
         
-        if (this.state.touched) {
+        if(this.props.newWorkout) {
+            return (
+                <div>                       
+                    <WorkoutDate workout={workout} />
+                    {this.renderAddExerciseButton()} 
+                </div>
+            )
+        } else if (this.state.touched) {
             return (
                 <div>                       
                     <WorkoutDate workout={workout} />
@@ -146,23 +153,40 @@ export default class Workout extends Component {
                         ? this.renderCancelButton()
                         : ''
                     }
-                    <Button 
-                        className='ExerciseItem__delete' 
-                        type='button'
-                        onClick={this.handleClickDelete}
-                    >
-                        Delete
-                    </Button>   
+                    {this.renderDeleteButton()}  
                 </div>    
             )
-        } else {
-            return (
-                <div>                       
-                    <WorkoutDate workout={workout} />
-                </div> 
-        )}
+            } else {
+                return (
+                    <div>                       
+                        <WorkoutDate workout={workout} />
+                    </div> 
+            )}
     }
 
+    renderAddExerciseButton() {
+        return (
+            <Button 
+                className='ExerciseItem__add' 
+                type='button'
+                // onClick={this.handleClickEdit}
+            >
+                Add Exercise
+            </Button>
+        )
+    }
+
+    renderDeleteButton() {
+        return (
+            <Button 
+                className='ExerciseItem__delete' 
+                type='button'
+                onClick={this.handleClickDelete}
+            >
+                Delete
+            </Button>
+        )
+    }
     renderCancelButton() {
         return (
             <Button 
@@ -186,6 +210,7 @@ export default class Workout extends Component {
             </Button>
         )
     }
+
 
     renderUpdateButton() {
         return (

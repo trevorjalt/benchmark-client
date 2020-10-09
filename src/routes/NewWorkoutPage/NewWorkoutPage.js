@@ -37,6 +37,7 @@ export default class NewWorkoutPage extends Component {
                 <Workout 
                     key={this.state.workoutItem.id}
                     workout={this.state.workoutItem}
+                    newWorkout={this.state.newWorkout}
                 />
             </div>
         )
