@@ -179,12 +179,12 @@ export default class Workout extends Component {
                             // onChange={(event) => this.context.filterSelect(event.target.value)}
                             >
                                 <option value=''>Select</option>
-                                <option value='squat'>Squat</option>
-                                <option value='bench'>Bench</option>
-                                <option value='row'>Row</option>
-                                <option value='deadlift'>DeadLift</option>
-                                <option value='military_press'>Military Press</option>
-                                <option value='clean'>Clean</option>
+                                <option value='Squat'>Squat</option>
+                                <option value='Bench'>Bench</option>
+                                <option value='Row'>Row</option>
+                                <option value='Deadlift'>DeadLift</option>
+                                <option value='Military Press'>Military Press</option>
+                                <option value='Clean'>Clean</option>
                             </select>
 
                     </form>
