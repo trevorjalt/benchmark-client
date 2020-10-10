@@ -15,7 +15,7 @@ export default class NewWorkoutPage extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.workoutItem !== this.state.workoutItem) {
             this.context.clearError()
-            WorkoutApiService.getWorkout(this.state.workoutItem.id)
+            WorkoutApiService.getWorkoutItem(this.state.workoutItem.id)
                 .then(this.setState({ newWorkout: !this.state.newWorkout }))
                 .catch(this.context.setError)
         }
@@ -31,7 +31,6 @@ export default class NewWorkoutPage extends Component {
     }
 
     renderNewWorkout() {
-
         return (
             <div> 
                 <Workout 

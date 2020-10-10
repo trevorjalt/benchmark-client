@@ -26,6 +26,15 @@ export default class Workout extends Component {
             .catch(this.context.setError)
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.newExerciseList !== this.state.newExerciseList) {
+            this.context.clearError()
+            WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
+                // .then(this.setState({ newWorkout: !this.state.newWorkout }))
+                .catch(this.context.setError)
+        }
+    }
+
     handleClickAddExercise = event => {
         event.preventDefault()
         const { clearError } = this.context
@@ -144,6 +153,17 @@ export default class Workout extends Component {
             />
         )
     }
+
+    renderNewExercise() {
+        return (
+            <div>
+                <Exercise 
+                    key={this.state.newExerciseList.id}
+                    exercise={this.state.newExerciseList}
+                />
+            </div>
+        )
+    }
     
     renderWorkouts() {
         const { error } = this.context
@@ -158,15 +178,17 @@ export default class Workout extends Component {
                             <select name="Exercise__select" id="Exercise__select" 
                             // onChange={(event) => this.context.filterSelect(event.target.value)}
                             >
-                                <option value="squat">Squat</option>
-                                <option value="bench">Bench</option>
-                                <option value="row">Row</option>
-                                <option value="deadlift">DeadLift</option>
-                                <option value="military_press">Military Press</option>
-                                <option value="clean">Clean</option>
+                                <option value=''>Select</option>
+                                <option value='squat'>Squat</option>
+                                <option value='bench'>Bench</option>
+                                <option value='row'>Row</option>
+                                <option value='deadlift'>DeadLift</option>
+                                <option value='military_press'>Military Press</option>
+                                <option value='clean'>Clean</option>
                             </select>
 
                     </form>
+                    {this.renderNewExercise()}
                     {this.renderAddExerciseButton()} 
                 </div>
             )

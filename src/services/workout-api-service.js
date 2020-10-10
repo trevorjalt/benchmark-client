@@ -30,7 +30,7 @@ const WorkoutApiService = {
             )
     },
 
-    getWorkout(id) {
+    getWorkoutItem(id) {
         return fetch (`${config.API_ENDPOINT}/workout/${id}`, {
             headers: {
                 'authorization': `bearer ${TokenService.getAuthToken()}`
@@ -85,6 +85,19 @@ const WorkoutApiService = {
             .then(res =>
                 (!res.ok)
                     ? res.json().then(event => Promise.reject(event))
+                    : res.json()
+            )
+    },
+
+    getExerciseItem(id) {
+        return fetch (`${config.API_ENDPOINT}/exercise/${id}`, {
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
                     : res.json()
             )
     },
