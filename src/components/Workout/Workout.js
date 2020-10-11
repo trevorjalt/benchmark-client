@@ -33,17 +33,22 @@ export default class Workout extends Component {
                 // .then(this.setState({ newWorkout: !this.state.newWorkout }))
             WorkoutApiService.getExercises()
                 .then(this.context.setExerciseList)
+                .then(console.log('propcheck', this.props.workout))
+                .then(console.log('statecheck', this.state.newExerciseList))
                 .catch(this.context.setError)
+
         }
     }
 
     handleClickAddExercise = event => {
         event.preventDefault()
         const { clearError } = this.context
-        console.log(this.state.addExercise)
+        console.log(this.props)
+        console.log('add statecheck', this.state.newExerciseList.exercise)
         clearError()
         WorkoutApiService.postExercise(this.state.addExercise)
-            .then(data => this.setState({ newExerciseList: data }))
+            .then(exercise => this.setState(
+                {newExerciseList: [...this.state.newExerciseList, exercise]}))
     }
 
     handleClickDelete = event => {
@@ -51,7 +56,7 @@ export default class Workout extends Component {
         const { workoutList = [], onDeleteWorkout, clearError } = this.context
         const { workout } = this.props
         const newList = workoutList.filter((item) => item.id !== workout.id)
-       
+
         clearError()
         WorkoutApiService.deleteWorkout(workout.id)
             .then(onDeleteWorkout(newList))
@@ -61,6 +66,13 @@ export default class Workout extends Component {
     // handleClickDeleteExercise = event => {
     //     event.preventDefault()
     //     const {exerciseList = [], onDeleteExercise, clearError } = this.context
+    //     // const { exerciseList } = this.props
+    //     // const { exercise } = this.state.newExerciseList
+    //     // const exerciseId = this.state.newExerciseList.find(element => element.id === id)
+    //     clearError()
+    //     WorkoutApiService.deleteExercise(109)
+    //     console.log(this.state.newExerciseList.id)
+    //     console.log(exerciseList)
 
     // }
 
@@ -168,15 +180,15 @@ export default class Workout extends Component {
             exercise => exercise.workout_id === this.props.workout.id)
         
         return workoutExercises.map(exercise => 
-            <Exercise
-                key={exercise.id}
-                exercise={exercise}
-                // edit={this.state.edit}
-                // onRepetitionChange={this.onRepetitionChange}
-                // onWeightChange={this.onWeightChange}
-                // handleClickUpdate={this.handleClickUpdate}
-        
-            />
+                <Exercise
+                    key={exercise.id}
+                    exercise={exercise}
+                    newWorkout={this.props.newWorkout}
+                    // edit={this.state.edit}
+                    // onRepetitionChange={this.onRepetitionChange}
+                    // onWeightChange={this.onWeightChange}
+                    // handleClickUpdate={this.handleClickUpdate}            
+                />
         )
     }
     
@@ -247,21 +259,10 @@ export default class Workout extends Component {
         )
     }
 
-    renderDeleteButton() {
-        return (
-            <Button 
-                className='ExerciseItem__delete' 
-                type='button'
-                onClick={this.handleClickDelete}
-            >
-                Delete
-            </Button>
-        )
-    }
     renderCancelButton() {
         return (
             <Button 
-                className='ExerciseItem__cancel' 
+                className='WorkoutItem__cancel' 
                 type='button'
                 onClick={this.handleClickEdit}
             >
@@ -270,10 +271,34 @@ export default class Workout extends Component {
         )
     }
 
+    renderDeleteButton() {
+        return (
+            <Button 
+                className='WorkoutItem__delete' 
+                type='button'
+                onClick={this.handleClickDelete}
+            >
+                Delete
+            </Button>
+        )
+    }
+
+    // renderDeleteExerciseButton() {
+    //     return (
+    //         <Button 
+    //             className='ExerciseItem__delete' 
+    //             type='button'
+    //             onClick={this.handleClickDeleteExercise}
+    //         >
+    //             Delete
+    //         </Button>
+    //     )
+    // }
+
     renderEditButton() {
         return (
             <Button 
-                className='ExerciseItem__edit' 
+                className='WorkoutItem__edit' 
                 type='button'
                 onClick={this.handleClickEdit}
             >
@@ -286,7 +311,7 @@ export default class Workout extends Component {
     renderUpdateButton() {
         return (
             <Button 
-                className='ExerciseItem__update' 
+                className='WorkoutItem__update' 
                 type='button'
                 onClick={this.handleClickUpdate}
             >
