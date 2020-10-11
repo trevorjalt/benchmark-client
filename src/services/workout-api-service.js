@@ -89,18 +89,18 @@ const WorkoutApiService = {
             )
     },
 
-    getExerciseItem(id) {
-        return fetch (`${config.API_ENDPOINT}/exercise/${id}`, {
-            headers: {
-                'authorization': `bearer ${TokenService.getAuthToken()}`
-            },
-        })
-            .then(res =>
-                (!res.ok)
-                    ? res.json().then(e => Promise.reject(e))
-                    : res.json()
-            )
-    },
+    // getExerciseItem(id) {
+    //     return fetch (`${config.API_ENDPOINT}/exercise/${id}`, {
+    //         headers: {
+    //             'authorization': `bearer ${TokenService.getAuthToken()}`
+    //         },
+    //     })
+    //         .then(res =>
+    //             (!res.ok)
+    //                 ? res.json().then(e => Promise.reject(e))
+    //                 : res.json()
+    //         )
+    // },
 
     getExerciseSets() {
         return fetch (`${config.API_ENDPOINT}/set`, {

@@ -16,7 +16,7 @@ export default class Workout extends Component {
         edit: null,
         updateSet: {},
         addExercise: {},
-        newExerciseList: {},
+        newExerciseList: [],
     }
 
     componentDidMount() {
@@ -29,8 +29,10 @@ export default class Workout extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.newExerciseList !== this.state.newExerciseList) {
             this.context.clearError()
-            WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
+            // WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
                 // .then(this.setState({ newWorkout: !this.state.newWorkout }))
+            WorkoutApiService.getExercises()
+                .then(this.context.setExerciseList)
                 .catch(this.context.setError)
         }
     }
@@ -55,6 +57,12 @@ export default class Workout extends Component {
             .then(onDeleteWorkout(newList))
             // .catch(this.context.setError())
     }
+
+    // handleClickDeleteExercise = event => {
+    //     event.preventDefault()
+    //     const {exerciseList = [], onDeleteExercise, clearError } = this.context
+
+    // }
 
     handleClickEdit = () => {
         this.setState({ edit: !this.state.edit })
@@ -154,14 +162,21 @@ export default class Workout extends Component {
         )
     }
 
-    renderNewExercise() {
-        return (
-            <div>
-                <Exercise 
-                    key={this.state.newExerciseList.id}
-                    exercise={this.state.newExerciseList}
-                />
-            </div>
+    renderNewExercises() {
+        const { exerciseList = [] } = this.context
+        const workoutExercises = exerciseList.filter(
+            exercise => exercise.workout_id === this.props.workout.id)
+        
+        return workoutExercises.map(exercise => 
+            <Exercise
+                key={exercise.id}
+                exercise={exercise}
+                // edit={this.state.edit}
+                // onRepetitionChange={this.onRepetitionChange}
+                // onWeightChange={this.onWeightChange}
+                // handleClickUpdate={this.handleClickUpdate}
+        
+            />
         )
     }
     
@@ -188,7 +203,7 @@ export default class Workout extends Component {
                             </select>
 
                     </form>
-                    {this.renderNewExercise()}
+                    {this.renderNewExercises()}
                     {this.renderAddExerciseButton()} 
                 </div>
             )
