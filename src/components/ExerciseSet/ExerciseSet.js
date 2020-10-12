@@ -56,10 +56,10 @@ export default class ExerciseSet extends Component {
         
     // }
     renderExerciseSetState() {
-        const { edit, exerciseSet } = this.props
+        const { continueWorkout, edit, exerciseSet, newWorkout } = this.props
         const vol = (exerciseSet.set_weight * exerciseSet.set_repetition)
 
-        if (edit) {
+        if (edit || continueWorkout || newWorkout) {
             return (
                <div className='SetItemUpdateForm'>
                 <form

@@ -108,6 +108,8 @@ export default class Exercise extends Component {
                 onRepetitionChange={this.props.onRepetitionChange}
                 onWeightChange={this.props.onWeightChange}
                 handleClickUpdate={this.props.handleClickUpdate}
+                newWorkout={this.props.newWorkout}
+                continueWorkout={this.props.continueWorkout}
             />
         
         )
