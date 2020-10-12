@@ -37,6 +37,10 @@ export default class ExerciseSet extends Component {
             .then(onDeleteExerciseSet(newList))
     }
 
+    handleClickEditExerciseSet = () => {
+        this.setState({ setSubmit: !this.state.setSubmit })
+    }
+
     handleClickSubmitExerciseSet = event => {
         event.preventDefault()
         const { exerciseSetList = [], clearError, onUpdateExerciseSet } = this.context
@@ -81,45 +85,7 @@ export default class ExerciseSet extends Component {
         // this.setState({ set_repetition: event.target.value})
     }
 
-    // handleFormChange(event) {
-    //     const { exerciseSet } = this.props
-        
-    //     this.setState({
-    //         updateExerciseSet: {
-    //             id: exerciseSet.id,
-    //             set_weight: this.onLocalWeightInputChange(),
-    //             set_repetition: this.onLocalRepetitionInputChange(),
-    //         } 
-    //     })
-    //     // const updateSet = {
-    //     //     id: exerciseSet.id,
-    //     //     set_weight: this.state.set_weight,
-    //     //     set_repetition: this.state.set_repetition,
-    //     // }
-    //     // this.setState
-    // }
 
-    // handleUpdateChange = () => {
-    //     const updateSet = { set_weight: this.state.set_weight, set_repetition: this.state.set_repetition }
-    //     this.props.handleUpdateSet(updateSet)
-    //     // const updateSet =  {this.handleWeightChange
-    // }
-
-    // handleClickUpdate = event => {
-    //     event.preventDefault()
-    //     const { exerciseSet, edit } = this.props
-    //     const updatedExerciseSet = {
-    //         id: exerciseSet.id,
-    //         // set_weight: Number(event.target.SetItem__weight.value),
-    //         // set_repetition: Number(event.target.repetition.value),
-    //         set_weight: this.state.set_weight,
-    //         set_repetition: this.state.set_repetition,
-    //     }
-    //     console.log(updatedExerciseSet)
-    //     console.log(this.props)
-    //     this.props.handleClickUpdate(updatedExerciseSet)
-        
-    // }
     renderExerciseSetState() {
         const { continueWorkout, edit, exerciseSet, newWorkout } = this.props
         const vol = (exerciseSet.set_weight * exerciseSet.set_repetition)
@@ -127,11 +93,15 @@ export default class ExerciseSet extends Component {
         if (this.state.setSubmit) {
 
                 return (
-                    <div className='ExerciseSet__item'>
-                        <span>Set #</span>
-                        <span>{exerciseSet.set_weight} lbs </span>
-                        <span>{exerciseSet.set_repetition} reps </span>
-                        <span>Vol: {vol} lbs</span>
+                    <div className='SetItemUpdateForm'>
+                        <div className='ExerciseSet__item'>
+                            <span>Set #</span>
+                            <span>{exerciseSet.set_weight} lbs </span>
+                            <span>{exerciseSet.set_repetition} reps </span>
+                            <span>Vol: {vol} lbs</span>
+                        </div>
+                        {this.renderEditExerciseSetButton()}
+                        {this.renderDeleteExerciseSetButton()}
                     </div>
                 )
         } else if (continueWorkout || newWorkout) {
@@ -246,6 +216,18 @@ export default class ExerciseSet extends Component {
                 onClick={this.handleClickDeleteExerciseSet}
             >
                 🗑
+            </Button>
+        )
+    }
+
+    renderEditExerciseSetButton() {
+        return (
+            <Button 
+                className='ExerciseSetItem__edit' 
+                type='button'
+                onClick={this.handleClickEditExerciseSet}
+            >
+                ✎
             </Button>
         )
     }
