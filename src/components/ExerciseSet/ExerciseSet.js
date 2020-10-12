@@ -9,8 +9,21 @@ export default class ExerciseSet extends Component {
     static contextType = WorkoutContext
 
     state = {
+        setSubmit: null,
         updateExerciseSetWeight: [],
         updateExerciseSetRepetition: [],
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.setSubmit !== this.state.setSubmit) {
+            this.context.clearError()
+            // WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
+                // .then(this.setState({ newWorkout: !this.state.newWorkout }))
+            WorkoutApiService.getExerciseSets()
+                .then(this.context.setExerciseSetList)
+                .catch(this.context.setError)
+
+        }
     }
 
     handleClickDeleteExerciseSet = event => {
@@ -28,9 +41,13 @@ export default class ExerciseSet extends Component {
         event.preventDefault()
         const { exerciseSetList = [], clearError, onUpdateExerciseSet } = this.context
         const newExerciseSet = {...this.state.updateExerciseSetRepetition, ...this.state.updateExerciseSetWeight}
-        console.log(newExerciseSet)
+        const displayList = exerciseSetList.map((item) =>
+            item.id === newExerciseSet.id
+            ? Object.assign({}, item, newExerciseSet) : item)
         clearError()
         WorkoutApiService.updateExerciseSet(newExerciseSet)
+            .then(onUpdateExerciseSet(displayList))
+            .then(this.setState({ setSubmit: !this.state.setSubmit }))
 
 
     }
@@ -107,7 +124,17 @@ export default class ExerciseSet extends Component {
         const { continueWorkout, edit, exerciseSet, newWorkout } = this.props
         const vol = (exerciseSet.set_weight * exerciseSet.set_repetition)
 
-        if (continueWorkout || newWorkout) {
+        if (this.state.setSubmit) {
+
+                return (
+                    <div className='ExerciseSet__item'>
+                        <span>Set #</span>
+                        <span>{exerciseSet.set_weight} lbs </span>
+                        <span>{exerciseSet.set_repetition} reps </span>
+                        <span>Vol: {vol} lbs</span>
+                    </div>
+                )
+        } else if (continueWorkout || newWorkout) {
             return (
                 <div className='SetItemUpdateForm'>
                 <form
