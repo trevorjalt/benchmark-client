@@ -167,7 +167,21 @@ const WorkoutApiService = {
             )
     },
 
-    updateWorkoutSet(update) {
+    deleteExerciseSet(id) {
+        return fetch (`${config.API_ENDPOINT}/set/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(event => Promise.reject(event))
+                    : null
+            )
+    },
+
+    updateExerciseSet(update) {
         return fetch (`${config.API_ENDPOINT}/set/${update.id}`, {
             method: 'PATCH',
             headers: {

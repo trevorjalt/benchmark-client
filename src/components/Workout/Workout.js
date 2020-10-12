@@ -101,28 +101,18 @@ export default class Workout extends Component {
 
     handleClickUpdate = event => {
         event.preventDefault()
-        const { exerciseSetList = [], clearError, onUpdateWorkoutSets } = this.context
+        const { exerciseSetList = [], clearError, onUpdateExerciseSet } = this.context
         const setsToUpdate = Object.keys(this.state.updateSet).map(key => ({ id: Number(key), ...this.state.updateSet[key] }))
         const updateList = exerciseSetList.map(el => setsToUpdate.find(e => e.id === el.id) || el) 
         const displayList = exerciseSetList.map((item, i) => {
             return (item.id === updateList[i].id) && Object.assign({},item,updateList[i])})  
         
         clearError()        
-        setsToUpdate.map(element => WorkoutApiService.updateWorkoutSet(element)
+        setsToUpdate.map(element => WorkoutApiService.updateExerciseSet(element)
             .then(this.handleClickEdit())
-            .then(onUpdateWorkoutSets(displayList))
+            .then(onUpdateExerciseSet(displayList))
         )
     }
-
-    // handleClickUpdate = (updatedExerciseSet) => {
-    //     // event.preventDefault()
-    //     this.context.clearError()
-       
-    //     WorkoutApiService.updateWorkoutSet(updatedExerciseSet)
-    //         .then(this.context.setExerciseSetList())
-    //         // .catch(this.context.setError())
-
-    // }
 
     onRepetitionChange = (id, set_repetition, exercise_id) => {
         this.setState({
