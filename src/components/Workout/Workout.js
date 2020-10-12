@@ -172,7 +172,7 @@ export default class Workout extends Component {
                 key={exercise.id}
                 exercise={exercise}
                 edit={this.state.edit}
-                continueWorkout={this.state.continueWorkout}
+                // continueWorkout={this.state.continueWorkout}
                 onRepetitionChange={this.onRepetitionChange}
                 onWeightChange={this.onWeightChange}
                 handleClickUpdate={this.handleClickUpdate}
