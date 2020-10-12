@@ -102,14 +102,12 @@ export default class Workout extends Component {
     handleClickUpdate = event => {
         event.preventDefault()
         const { exerciseSetList = [], clearError, onUpdateWorkoutSets } = this.context
-        
-        clearError()
         const setsToUpdate = Object.keys(this.state.updateSet).map(key => ({ id: Number(key), ...this.state.updateSet[key] }))
         const updateList = exerciseSetList.map(el => setsToUpdate.find(e => e.id === el.id) || el) 
-        // const displayList = this.mergeArrayObjects(exerciseSetList, updateList)
         const displayList = exerciseSetList.map((item, i) => {
-            return (item.id === updateList[i].id) && Object.assign({},item,updateList[i])})
-            
+            return (item.id === updateList[i].id) && Object.assign({},item,updateList[i])})  
+        
+        clearError()        
         setsToUpdate.map(element => WorkoutApiService.updateWorkoutSet(element)
             .then(this.handleClickEdit())
             .then(onUpdateWorkoutSets(displayList))
@@ -204,7 +202,7 @@ export default class Workout extends Component {
             return (
                 <div>                       
                     <WorkoutDate workout={workout} />
-                    <form className='AddNewExerciseForm' onChange={e => this.onSelectExerciseChange(e)}>
+                    <form className='AddNewExerciseForm' onChange={this.onSelectExerciseChange}>
                             <label htmlFor='Exercise__select'></label>
                             <select name='Exercise__select' id='Exercise__select'
                             // onChange={(event) => this.context.filterSelect(event.target.value)}

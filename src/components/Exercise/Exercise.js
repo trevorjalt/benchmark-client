@@ -21,17 +21,17 @@ export default class Exercise extends Component {
             .catch(this.context.setError)
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.updateExerciseName !== this.state.updateExerciseName) {
-            this.context.clearError()
-            // WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
-                // .then(this.setState({ newWorkout: !this.state.newWorkout }))
-            WorkoutApiService.getExercises()
-                .then(this.context.setExerciseList)
-                .catch(this.context.setError)
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevState.updateExerciseName !== this.state.updateExerciseName) {
+    //         this.context.clearError()
+    //         // WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
+    //             // .then(this.setState({ newWorkout: !this.state.newWorkout }))
+    //         WorkoutApiService.getExercises()
+    //             .then(this.context.setExerciseList)
+    //             .catch(this.context.setError)
 
-        }
-    }
+    //     }
+    // }
 
     handleClickDeleteExercise = event => {
         event.preventDefault()
@@ -52,18 +52,14 @@ export default class Exercise extends Component {
     handleSubmitExerciseName = event => {
         event.preventDefault()
         const { exerciseList = [], clearError, onUpdateExercise } = this.context
-        console.log('state', this.state.updateExerciseName.id)
+        const displayList = exerciseList.map((item, i) => 
+            item.id === this.state.updateExerciseName.id 
+            ? Object.assign({},item,this.state.updateExerciseName) : item )
 
         clearError()
-        // const displayList = exerciseList.filter((item, i) => {
-        //     return (item.id === this.state.updateExerciseName.id) && Object.assign({},item,this.state.updateExerciseName[i])})
-        console.log('state', this.state.updateExerciseName)
-        console.log('existingList', exerciseList)
-        // console.log('list', displayList2)
-
         WorkoutApiService.updateExercise(this.state.updateExerciseName)
-            // .then(onUpdateExercise(test3))
-                .then(data => this.setState({ updateExerciseName: data }))
+            .then(onUpdateExercise(displayList))
+                // .then(data => this.setState({ updateExerciseName: data }))
             // .then(this.context.setExerciseList)
             .then(this.setState({ editExerciseName: !this.state.editExerciseName }))
     }
@@ -103,7 +99,7 @@ export default class Exercise extends Component {
         if (this.state.editExerciseName) {
             return (
                 <div>
-                <form className='EditExerciseNameForm' onChange={e => this.onSelectExerciseNameChange(e)}>
+                <form className='EditExerciseNameForm' onChange={this.onSelectExerciseNameChange}>
                         <label htmlFor='ExerciseName__select'></label>
                         <select name='ExerciseName__select' id='ExerciseName__select'
                         // onChange={(event) => this.context.filterSelect(event.target.value)}
