@@ -147,6 +147,26 @@ const WorkoutApiService = {
             )
     },
 
+    postExerciseSet(exerciseSet) {
+        return fetch (`${config.API_ENDPOINT}/set`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            }, 
+            body: JSON.stringify({
+                exercise_id: exerciseSet.exercise_id,
+                set_weight: exerciseSet.set_weight,
+                set_repetition: exerciseSet.set_repetition,
+            }) 
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(event => Promise.reject(event))
+                    : res.json()
+            )
+    },
+
     updateWorkoutSet(update) {
         return fetch (`${config.API_ENDPOINT}/set/${update.id}`, {
             method: 'PATCH',

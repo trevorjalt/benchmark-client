@@ -11,6 +11,7 @@ export default class Exercise extends Component {
 
     state = {
         editExerciseName: null,
+        addExerciseSet: [],
         updateExerciseName: [],
     }
 
@@ -21,17 +22,37 @@ export default class Exercise extends Component {
             .catch(this.context.setError)
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevState.updateExerciseName !== this.state.updateExerciseName) {
-    //         this.context.clearError()
-    //         // WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
-    //             // .then(this.setState({ newWorkout: !this.state.newWorkout }))
-    //         WorkoutApiService.getExercises()
-    //             .then(this.context.setExerciseList)
-    //             .catch(this.context.setError)
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.addExerciseSet !== this.state.addExerciseSet) {
+            this.context.clearError()
+            // WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
+                // .then(this.setState({ newWorkout: !this.state.newWorkout }))
+            WorkoutApiService.getExerciseSets()
+                .then(this.context.setExerciseSetList)
+                .catch(this.context.setError)
 
-    //     }
-    // }
+        }
+    }
+
+    handleClickAddExerciseSet = event => {
+        event.preventDefault()
+        const { clearError } = this.context
+        const { exercise } = this.props
+        const newExerciseSet = { set_weight: 0, set_repetition: 0, exercise_id: exercise.id}
+
+        clearError()
+        WorkoutApiService.postExerciseSet(newExerciseSet)
+            .then(data => this.setState({ addExerciseSet: data }))
+        // this.setState({...this.state.addExerciseSet, 
+        //     addExerciseSet: {
+        //         set_weight: 0,
+        //         set_repetition: 0,
+        //         exercise_id: exercise.id
+        //     }
+        // })
+        console.log(this.state.addExerciseSet)
+        // WorkoutApiService.postExerciseSet(this.state.addExerciseSet)
+    }
 
     handleClickDeleteExercise = event => {
         event.preventDefault()
@@ -120,6 +141,7 @@ export default class Exercise extends Component {
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderExerciseSets()}
                 </Section>
+                {this.renderAddExerciseSetButton()}
                 <span>Exercise Vol: # lbs</span>              
             </div>
                 
@@ -137,6 +159,7 @@ export default class Exercise extends Component {
                             ? <p className='red'>Whoops! There was an error</p>
                             : this.renderExerciseSets()}
                     </Section>
+                    {this.renderAddExerciseSetButton()}
                     <span>Exercise Vol: # lbs</span>
                 </div>
             )
@@ -153,6 +176,18 @@ export default class Exercise extends Component {
                 </div>
             )            
         }
+    }
+
+    renderAddExerciseSetButton() {
+        return (
+            <Button 
+                className='ExerciseSetItem__add' 
+                type='button'
+                onClick={this.handleClickAddExerciseSet}
+            >
+                Add Set
+            </Button>
+        )
     }
 
     renderDeleteExerciseButton() {
