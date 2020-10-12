@@ -14,17 +14,17 @@ export default class ExerciseSet extends Component {
         updateExerciseSetRepetition: [],
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.setSubmit !== this.state.setSubmit) {
-            this.context.clearError()
-            // WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
-                // .then(this.setState({ newWorkout: !this.state.newWorkout }))
-            WorkoutApiService.getExerciseSets()
-                .then(this.context.setExerciseSetList)
-                .catch(this.context.setError)
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevState.setSubmit !== this.state.setSubmit) {
+    //         this.context.clearError()
+    //         // WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
+    //             // .then(this.setState({ newWorkout: !this.state.newWorkout }))
+    //         WorkoutApiService.getExerciseSets()
+    //             .then(this.context.setExerciseSetList)
+    //             .catch(this.context.setError)
 
-        }
-    }
+    //     }
+    // }
 
     handleClickDeleteExerciseSet = event => {
         event.preventDefault()

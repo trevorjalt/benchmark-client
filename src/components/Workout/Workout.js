@@ -192,8 +192,9 @@ export default class Workout extends Component {
             return (
                 <div>                       
                     <WorkoutDate workout={workout} />
+                    {this.renderNewExercises()}
                     <form className='AddNewExerciseForm' onChange={this.onSelectExerciseChange}>
-                            <label htmlFor='Exercise__select'></label>
+                            <label htmlFor='Exercise__select'>Select Exercise</label>
                             <select name='Exercise__select' id='Exercise__select'
                             // onChange={(event) => this.context.filterSelect(event.target.value)}
                             >
@@ -207,7 +208,7 @@ export default class Workout extends Component {
                             </select>
 
                     </form>
-                    {this.renderNewExercises()}
+                    
                     {this.renderAddExerciseButton()}
                     {this.renderCompleteButton()} 
                 </div>
