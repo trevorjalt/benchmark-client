@@ -16,6 +16,7 @@ const WorkoutContext = React.createContext({
     // setNewWorkoutItem: () => {},
     // onAddExercise: () => {},
     onDeleteWorkout: () => {},
+    onUpdateExercise: () => {},
     onUpdateWorkoutSets: () => {},
 })
 export default WorkoutContext
@@ -71,6 +72,10 @@ export class WorkoutProvider extends Component {
         this.setWorkoutList(newList)
     }
 
+    onUpdateExercise = (newList) => {
+        this.setExerciseList(newList)
+    }
+
     onUpdateWorkoutSets = (newList) => {
         this.setExerciseSetList(newList)
     }
@@ -94,6 +99,7 @@ export class WorkoutProvider extends Component {
             // onAddExercise: this.onAddExercise,
             onDeleteExercise: this.onDeleteExercise,
             onDeleteWorkout: this.onDeleteWorkout,
+            onUpdateExercise: this.onUpdateExercise,
             onUpdateWorkoutSets: this.onUpdateWorkoutSets,         
         }
         return (

@@ -12,8 +12,9 @@ export default class Workout extends Component {
     static contextType = WorkoutContext
 
     state = { 
-        touched: null,
         edit: null,
+        continueWorkout: null,
+        touched: null,
         updateSet: {},
         addExercise: {},
         newExerciseList: [],
@@ -33,8 +34,6 @@ export default class Workout extends Component {
                 // .then(this.setState({ newWorkout: !this.state.newWorkout }))
             WorkoutApiService.getExercises()
                 .then(this.context.setExerciseList)
-                .then(console.log('propcheck', this.props.workout))
-                .then(console.log('statecheck', this.state.newExerciseList))
                 .catch(this.context.setError)
 
         }
@@ -43,12 +42,19 @@ export default class Workout extends Component {
     handleClickAddExercise = event => {
         event.preventDefault()
         const { clearError } = this.context
-        console.log(this.props)
-        console.log('add statecheck', this.state.newExerciseList.exercise)
+
         clearError()
         WorkoutApiService.postExercise(this.state.addExercise)
             .then(exercise => this.setState(
                 {newExerciseList: [...this.state.newExerciseList, exercise]}))
+    }
+
+    handleClickComplete = () => {
+        this.setState({ continueWorkout: !this.state.continuWorkout })
+    }
+
+    handleClickContinue = () => {
+        this.setState({ continueWorkout: !this.state.continueWorkout })
     }
 
     handleClickDelete = event => {
@@ -166,6 +172,7 @@ export default class Workout extends Component {
                 key={exercise.id}
                 exercise={exercise}
                 edit={this.state.edit}
+                continueWorkout={this.state.continueWorkout}
                 onRepetitionChange={this.onRepetitionChange}
                 onWeightChange={this.onWeightChange}
                 handleClickUpdate={this.handleClickUpdate}
@@ -184,10 +191,7 @@ export default class Workout extends Component {
                     key={exercise.id}
                     exercise={exercise}
                     newWorkout={this.props.newWorkout}
-                    // edit={this.state.edit}
-                    // onRepetitionChange={this.onRepetitionChange}
-                    // onWeightChange={this.onWeightChange}
-                    // handleClickUpdate={this.handleClickUpdate}            
+                    continueWorkout={this.state.continueWorkout}        
                 />
         )
     }
@@ -196,13 +200,13 @@ export default class Workout extends Component {
         const { error } = this.context
         const { workout } = this.props
         
-        if(this.props.newWorkout) {
+        if(this.props.newWorkout || this.state.continueWorkout) {
             return (
                 <div>                       
                     <WorkoutDate workout={workout} />
                     <form className='AddNewExerciseForm' onChange={e => this.onSelectExerciseChange(e)}>
                             <label htmlFor='Exercise__select'></label>
-                            <select name="Exercise__select" id="Exercise__select" 
+                            <select name='Exercise__select' id='Exercise__select'
                             // onChange={(event) => this.context.filterSelect(event.target.value)}
                             >
                                 <option value=''>Select</option>
@@ -216,7 +220,8 @@ export default class Workout extends Component {
 
                     </form>
                     {this.renderNewExercises()}
-                    {this.renderAddExerciseButton()} 
+                    {this.renderAddExerciseButton()}
+                    {this.renderCompleteButton()} 
                 </div>
             )
         } else if (this.state.touched) {
@@ -231,6 +236,10 @@ export default class Workout extends Component {
                     {this.state.edit
                         ? this.renderUpdateButton()
                         : this.renderEditButton()
+                    }
+                    {!this.state.edit
+                        ? this.renderContinueButton()
+                        : ''
                     }
                     {this.state.edit
                         ? this.renderCancelButton()
@@ -267,6 +276,30 @@ export default class Workout extends Component {
                 onClick={this.handleClickEdit}
             >
                 Cancel
+            </Button>
+        )
+    }
+
+    renderCompleteButton() {
+        return (
+            <Button 
+                className='WorkoutItem__complete' 
+                type='button'
+                onClick={this.handleClickComplete}
+            >
+                Complete
+            </Button>
+        )
+    }
+
+    renderContinueButton() {
+        return (
+            <Button 
+                className='WorkoutItem__continue' 
+                type='button'
+                onClick={this.handleClickContinue}
+            >
+                Continue
             </Button>
         )
     }
