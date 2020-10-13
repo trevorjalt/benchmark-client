@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom'
 import WorkoutContext from '../../contexts/WorkoutContext'
 import WorkoutApiService from '../../services/workout-api-service'
 import { NiceDate, Section, Button } from '../Utils/Utils'
@@ -14,8 +15,9 @@ export default class Workout extends Component {
     state = { 
         continueWorkout: null,
         error: null,
-        exerciseNameValue: null,
+        redirect: null,
         touched: null,
+        exerciseNameValue: '',
         updateSet: {},
         addExercise: {},
         newExerciseList: [],
@@ -43,7 +45,7 @@ export default class Workout extends Component {
     handleClickAddExercise = event => {
         event.preventDefault()
 
-        if(!this.state.exerciseNameValue) {
+        if(this.state.exerciseNameValue === '') {
             this.setState({ error: 'Please select an exercise from the dropdown menu' })
         } else {
             this.setState({ error: null })
@@ -53,8 +55,26 @@ export default class Workout extends Component {
         }
     }
 
-    handleClickComplete = () => {
-        this.setState({ continueWorkout: !this.state.continuWorkout })
+    handleClickComplete = (event) => {
+        event.preventDefault()
+        const { exerciseSetList = [], clearError, onUpdateExerciseSet } = this.context
+        const setsToUpdate = Object.keys(this.state.updateSet).map(key => ({ id: Number(key), ...this.state.updateSet[key] }))
+        const updateList = exerciseSetList.map(el => setsToUpdate.find(e => e.id === el.id) || el) 
+        const displayList = exerciseSetList.map((item, i) => {
+            return (item.id === updateList[i].id) && Object.assign({},item,updateList[i])})  
+        
+        if (Object.keys(this.state.updateSet).length === 0) {
+            this.handleClickContinue()
+            return
+        } else {
+            clearError()        
+            setsToUpdate.map(element => WorkoutApiService.updateExerciseSet(element)
+                .then(this.handleClickContinue())
+                .then(onUpdateExerciseSet(displayList))
+                .then(this.setState({ redirect: true }))     
+            )
+            
+        }
     }
 
     handleClickContinue = () => {
@@ -77,21 +97,6 @@ export default class Workout extends Component {
         this.setState({ touched: !this.state.touched })
     }
 
-    handleClickComplete = event => {
-        event.preventDefault()
-        const { exerciseSetList = [], clearError, onUpdateExerciseSet } = this.context
-        const setsToUpdate = Object.keys(this.state.updateSet).map(key => ({ id: Number(key), ...this.state.updateSet[key] }))
-        const updateList = exerciseSetList.map(el => setsToUpdate.find(e => e.id === el.id) || el) 
-        const displayList = exerciseSetList.map((item, i) => {
-            return (item.id === updateList[i].id) && Object.assign({},item,updateList[i])})  
-        
-        clearError()        
-        setsToUpdate.map(element => WorkoutApiService.updateExerciseSet(element)
-            .then(this.handleClickContinue())
-            .then(onUpdateExerciseSet(displayList))       
-        )
-    }
-
     handleKeyPressed = event => {
         if (event.key === 'Enter') {
             this.handleClickTouched()
@@ -107,7 +112,7 @@ export default class Workout extends Component {
                 set_repetition: set_repetition,
                 exercise_id: exercise_id
                 }
-            }
+            },
         })
     }
 
@@ -118,7 +123,7 @@ export default class Workout extends Component {
                 exercise_name: event.target.value,
                 workout_id: workout.id
             },
-            exerciseNameValue: !this.state.exerciseNameValue,
+            exerciseNameValue: event.target.value,
         })
     }
 
@@ -130,8 +135,8 @@ export default class Workout extends Component {
                 ...this.state.updateSet[id],
                 set_weight: set_weight,
                 exercise_id: exercise_id
-            }
-            }
+                }
+            },
         })
     }
 
@@ -340,11 +345,15 @@ export default class Workout extends Component {
     // }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect push to='/myworkouts' />
+        } else {
         return (
             <div className='Workout__item' onDoubleClick={this.handleClickTouched}>                    
                 {this.renderWorkouts()}
             </div>    
         )
+        }
     }
 }
 

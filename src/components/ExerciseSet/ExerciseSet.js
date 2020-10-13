@@ -10,7 +10,7 @@ export default class ExerciseSet extends Component {
 
     state = {
         error: null,
-        inputValue: null,
+        inputValue: '',
         setSubmit: null,
         updateExerciseSetWeight: [],
         updateExerciseSetRepetition: [],
@@ -51,7 +51,7 @@ export default class ExerciseSet extends Component {
             item.id === newExerciseSet.id
             ? Object.assign({}, item, newExerciseSet) : item)
         
-        if (!this.state.inputValue) {
+        if (this.state.inputValue === '') {
             this.setState({ error: 'Please enter a valid number for weight and repetitions'})
             return
         } else {       
@@ -87,7 +87,7 @@ export default class ExerciseSet extends Component {
                 id: this.props.exerciseSet.id,
                 set_repetition: Number(event.target.value),
             },
-            inputValue: !this.state.inputValue,
+            inputValue: Number(event.target.value)
         })
         this.props.onRepetitionChange(this.props.exerciseSet.id, Number(event.target.value), this.props.exerciseSet.exercise_id)
         // this.props.handleUpdateSet(this.state.set_repetition)
@@ -99,7 +99,7 @@ export default class ExerciseSet extends Component {
                 id: this.props.exerciseSet.id,
                 set_weight: Number(event.target.value),
             },
-            inputValue: !this.state.inputValue,
+            inputValue: Number(event.target.value),
         })
         this.props.onWeightChange(this.props.exerciseSet.id, Number(event.target.value), this.props.exerciseSet.exercise_id)
         // this.setState({ set_repetition: event.target.value})
