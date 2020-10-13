@@ -13,6 +13,7 @@ export default class Workout extends Component {
 
     state = { 
         continueWorkout: null,
+        error: null,
         exerciseNameValue: null,
         touched: null,
         updateSet: {},
@@ -41,12 +42,15 @@ export default class Workout extends Component {
 
     handleClickAddExercise = event => {
         event.preventDefault()
-        const { clearError } = this.context
 
-        clearError()
-        WorkoutApiService.postExercise(this.state.addExercise)
+        if(!this.state.exerciseNameValue) {
+            this.setState({ error: 'Please select an exercise from the dropdown menu' })
+        } else {
+            this.setState({ error: null })
+            WorkoutApiService.postExercise(this.state.addExercise)
             .then(exercise => this.setState(
                 {newExerciseList: [...this.state.newExerciseList, exercise]}))
+        }
     }
 
     handleClickComplete = () => {
@@ -169,7 +173,7 @@ export default class Workout extends Component {
     }
     
     renderWorkouts() {
-        const { error } = this.context
+        const { error } = this.state
         const { workout } = this.props
         
         if(this.props.newWorkout || this.state.continueWorkout) {
@@ -177,6 +181,9 @@ export default class Workout extends Component {
                 <div>                     
                     <WorkoutDate workout={workout} /> 
                     {this.renderNewExercises()}
+                    <div className='error-message' role='alert'>
+                        {error && <p className='red'>{error}</p>}
+                    </div>
                     <form className='AddNewExerciseForm' onChange={this.onSelectExerciseChange}>
                             <label htmlFor='Exercise__select'>Select Exercise</label>
                             <select name='Exercise__select' id='Exercise__select'
@@ -240,7 +247,6 @@ export default class Workout extends Component {
             <Button 
                 className='ExerciseItem__add' 
                 type='button'
-                disabled={!this.state.exerciseNameValue}
                 onClick={this.handleClickAddExercise}
             >
                 Add Exercise

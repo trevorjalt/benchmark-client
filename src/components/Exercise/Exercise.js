@@ -43,15 +43,6 @@ export default class Exercise extends Component {
         clearError()
         WorkoutApiService.postExerciseSet(newExerciseSet)
             .then(data => this.setState({ addExerciseSet: data }))
-        // this.setState({...this.state.addExerciseSet, 
-        //     addExerciseSet: {
-        //         set_weight: 0,
-        //         set_repetition: 0,
-        //         exercise_id: exercise.id
-        //     }
-        // })
-        console.log(this.state.addExerciseSet)
-        // WorkoutApiService.postExerciseSet(this.state.addExerciseSet)
     }
 
     handleClickDeleteExercise = event => {

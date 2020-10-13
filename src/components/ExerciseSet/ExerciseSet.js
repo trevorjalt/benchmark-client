@@ -9,6 +9,8 @@ export default class ExerciseSet extends Component {
     static contextType = WorkoutContext
 
     state = {
+        error: null,
+        inputValue: null,
         setSubmit: null,
         updateExerciseSetWeight: [],
         updateExerciseSetRepetition: [],
@@ -43,16 +45,22 @@ export default class ExerciseSet extends Component {
 
     handleClickSubmitExerciseSet = event => {
         event.preventDefault()
-        const { exerciseSetList = [], clearError, onUpdateExerciseSet } = this.context
+        const { exerciseSetList = [], onUpdateExerciseSet } = this.context
         const newExerciseSet = {...this.state.updateExerciseSetRepetition, ...this.state.updateExerciseSetWeight}
         const displayList = exerciseSetList.map((item) =>
             item.id === newExerciseSet.id
             ? Object.assign({}, item, newExerciseSet) : item)
         
-            clearError()
-        WorkoutApiService.updateExerciseSet(newExerciseSet)
-            .then(onUpdateExerciseSet(displayList))
-            .then(this.setState({ setSubmit: !this.state.setSubmit }))
+        if (!this.state.inputValue) {
+            this.setState({ error: 'Please enter a valid number for weight and repetitions'})
+            return
+        } else {       
+            this.setState({ error: null })
+            WorkoutApiService.updateExerciseSet(newExerciseSet)
+                .then(onUpdateExerciseSet(displayList))
+                .then(this.setState({ setSubmit: !this.state.setSubmit }))
+        }
+                
     }
 
     // onLocalRepetitionInputChange = event => {
@@ -78,19 +86,20 @@ export default class ExerciseSet extends Component {
             updateExerciseSetRepetition: {
                 id: this.props.exerciseSet.id,
                 set_repetition: Number(event.target.value),
-            }
+            },
+            inputValue: !this.state.inputValue,
         })
         this.props.onRepetitionChange(this.props.exerciseSet.id, Number(event.target.value), this.props.exerciseSet.exercise_id)
         // this.props.handleUpdateSet(this.state.set_repetition)
     }
 
     onWeightInputChange = event => {
-        console.log(this.props.exerciseSet.id)
         this.setState({
             updateExerciseSetWeight: {
                 id: this.props.exerciseSet.id,
                 set_weight: Number(event.target.value),
-            }
+            },
+            inputValue: !this.state.inputValue,
         })
         this.props.onWeightChange(this.props.exerciseSet.id, Number(event.target.value), this.props.exerciseSet.exercise_id)
         // this.setState({ set_repetition: event.target.value})
@@ -117,11 +126,11 @@ export default class ExerciseSet extends Component {
                 )
         } else if (continueWorkout || newWorkout) {
             return (
-                <div className='SetItemUpdateForm'>
+                <div>
+                    <div className='error-message' role='alert'>
+                        {error && <p className='red'>{error}</p>}
+                    </div>
                     <form className='SetItemUpdateForm'>
-                        {/* <div role='alert'>
-                            {error && <p className='red'>{error}</p>}
-                        </div> */}
                         <div className='weight'>
                             <label htmlFor='SetItem__weight'>
                                 Weight
@@ -133,7 +142,7 @@ export default class ExerciseSet extends Component {
                                 type='number'
                                 // aria-label='Weight'
                                 // aria-required='true'
-                                // aria-describedby='weightError'
+                                aria-describedby='weightError'
                                 // // aria-invalid='true'
                                 defaultValue={exerciseSet.set_weight}
                                 onInput={this.onWeightInputChange.bind(this)}
@@ -141,7 +150,9 @@ export default class ExerciseSet extends Component {
                             <span> lbs </span>
                             {/* <div
                                 className='errorMessage'
-                                id='weightError'>
+                                id='weightError'
+                                aria-live="assertive"
+                                >
                                 Please enter a valid number for your set weight
                             </div> */}
                         </div>
