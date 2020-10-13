@@ -12,7 +12,7 @@ export default class Workout extends Component {
     static contextType = WorkoutContext
 
     state = { 
-        edit: null,
+        // edit: null,
         continueWorkout: null,
         touched: null,
         updateSet: {},
@@ -69,37 +69,15 @@ export default class Workout extends Component {
             // .catch(this.context.setError())
     }
 
-    // handleClickDeleteExercise = event => {
-    //     event.preventDefault()
-    //     const {exerciseList = [], onDeleteExercise, clearError } = this.context
-    //     // const { exerciseList } = this.props
-    //     // const { exercise } = this.state.newExerciseList
-    //     // const exerciseId = this.state.newExerciseList.find(element => element.id === id)
-    //     clearError()
-    //     WorkoutApiService.deleteExercise(109)
-    //     console.log(this.state.newExerciseList.id)
-    //     console.log(exerciseList)
-
-    // }
-
-    handleClickEdit = () => {
-        this.setState({ edit: !this.state.edit })
-    }
-
-    // mergeArrayObjects(arr1,arr2){
-    //     return arr1.map((item,i) => {
-    //         if(item.id === arr2[i].id){
-    //            //merging two objects
-    //         return Object.assign({},item,arr2[i])
-    //        }
-    //     })
+    // handleClickEdit = () => {
+    //     this.setState({ edit: !this.state.edit })
     // }
 
     handleClickTouched = () => {
         this.setState({ touched: !this.state.touched })
     }
 
-    handleClickUpdate = event => {
+    handleClickComplete = event => {
         event.preventDefault()
         const { exerciseSetList = [], clearError, onUpdateExerciseSet } = this.context
         const setsToUpdate = Object.keys(this.state.updateSet).map(key => ({ id: Number(key), ...this.state.updateSet[key] }))
@@ -109,9 +87,11 @@ export default class Workout extends Component {
         
         clearError()        
         setsToUpdate.map(element => WorkoutApiService.updateExerciseSet(element)
-            .then(this.handleClickEdit())
+            .then(this.handleClickContinue())
             .then(onUpdateExerciseSet(displayList))
+            .then(console.log('hey'))
         )
+
     }
 
     onRepetitionChange = (id, set_repetition, exercise_id) => {
@@ -163,7 +143,7 @@ export default class Workout extends Component {
                 // continueWorkout={this.state.continueWorkout}
                 onRepetitionChange={this.onRepetitionChange}
                 onWeightChange={this.onWeightChange}
-                handleClickUpdate={this.handleClickUpdate}
+                handleClickComplete={this.handleClickComplete}
         
             />
         )
@@ -179,7 +159,10 @@ export default class Workout extends Component {
                     key={exercise.id}
                     exercise={exercise}
                     newWorkout={this.props.newWorkout}
-                    continueWorkout={this.state.continueWorkout}        
+                    continueWorkout={this.state.continueWorkout}
+                    onRepetitionChange={this.onRepetitionChange}
+                    onWeightChange={this.onWeightChange}
+                    handleClickComplete={this.handleClickComplete}        
                 />
         )
     }
@@ -222,18 +205,18 @@ export default class Workout extends Component {
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderExercises()}
                     </Section>
-                    {this.state.edit
+                    {/* {this.state.edit
                         ? this.renderUpdateButton()
                         : this.renderEditButton()
+                    } */}
+                    {this.state.continueWorkout
+                        ? this.renderCompleteButton()
+                        : this.renderContinueButton()
                     }
-                    {!this.state.edit
-                        ? this.renderContinueButton()
-                        : ''
-                    }
-                    {this.state.edit
+                    {/* {this.state.edit
                         ? this.renderCancelButton()
                         : ''
-                    }
+                    } */}
                     {this.renderDeleteButton()}  
                 </div>    
             )
@@ -257,17 +240,17 @@ export default class Workout extends Component {
         )
     }
 
-    renderCancelButton() {
-        return (
-            <Button 
-                className='WorkoutItem__cancel' 
-                type='button'
-                onClick={this.handleClickEdit}
-            >
-                Cancel
-            </Button>
-        )
-    }
+    // renderCancelButton() {
+    //     return (
+    //         <Button 
+    //             className='WorkoutItem__cancel' 
+    //             type='button'
+    //             onClick={this.handleClickEdit}
+    //         >
+    //             Cancel
+    //         </Button>
+    //     )
+    // }
 
     renderCompleteButton() {
         return (
@@ -317,30 +300,30 @@ export default class Workout extends Component {
     //     )
     // }
 
-    renderEditButton() {
-        return (
-            <Button 
-                className='WorkoutItem__edit' 
-                type='button'
-                onClick={this.handleClickEdit}
-            >
-                Edit
-            </Button>
-        )
-    }
+    // renderEditButton() {
+    //     return (
+    //         <Button 
+    //             className='WorkoutItem__edit' 
+    //             type='button'
+    //             onClick={this.handleClickEdit}
+    //         >
+    //             Edit
+    //         </Button>
+    //     )
+    // }
 
 
-    renderUpdateButton() {
-        return (
-            <Button 
-                className='WorkoutItem__update' 
-                type='button'
-                onClick={this.handleClickUpdate}
-            >
-                Update
-            </Button>
-        )
-    }
+    // renderUpdateButton() {
+    //     return (
+    //         <Button 
+    //             className='WorkoutItem__update' 
+    //             type='button'
+    //             onClick={this.handleClickUpdate}
+    //         >
+    //             Update
+    //         </Button>
+    //     )
+    // }
 
     render() {
         return (
