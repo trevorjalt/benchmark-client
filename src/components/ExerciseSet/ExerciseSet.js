@@ -52,7 +52,8 @@ export default class ExerciseSet extends Component {
             ? Object.assign({}, item, newExerciseSet) : item)
         
         if (this.state.inputValue === '') {
-            this.setState({ error: 'Please enter a valid number for weight and repetitions'})
+            // this.setState({ error: 'Please enter a valid number for weight and repetitions'})
+            this.handleClickEditExerciseSet()
             return
         } else {       
             this.setState({ error: null })

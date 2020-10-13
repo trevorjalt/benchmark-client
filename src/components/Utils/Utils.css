@@ -43,6 +43,7 @@
 .Section {
   margin-left: 2.5vw;
   margin-right: 2.5vw;
+  width: 90vw;
 }
 .Section--list {
   margin-left: 10px;

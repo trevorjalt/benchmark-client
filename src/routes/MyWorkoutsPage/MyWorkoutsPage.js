@@ -3,6 +3,7 @@ import WorkoutContext from '../../contexts/WorkoutContext'
 import WorkoutApiService from '../../services/workout-api-service'
 import { Section } from '../../components/Utils/Utils'
 import Workout from '../../components/Workout/Workout'
+import './MyWorkoutsPage.css'
 
 
 export default class MyWorkoutsPage extends Component {
@@ -30,9 +31,9 @@ export default class MyWorkoutsPage extends Component {
         const { error } = this.context
         
         return (
-            <div>
+            <div className='MyWorkoutsPage'>
                 <h1>myWorkouts</h1>
-                <Section list className='MyWorkoutsPage'>
+                <Section list>
                     {error
                     ? <p className='red'>Whoops! There was an error</p>
                     : this.renderWorkouts()}

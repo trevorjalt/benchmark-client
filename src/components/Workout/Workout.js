@@ -64,7 +64,9 @@ export default class Workout extends Component {
             return (item.id === updateList[i].id) && Object.assign({},item,updateList[i])})  
         
         if (Object.keys(this.state.updateSet).length === 0) {
-            this.setState({ error: 'No sets? A workout needs some numbers.'})
+            this.setState({ redirect: true })
+            this.handleClickContinue()
+            // this.setState({ error: 'No sets? A workout needs some numbers.'})
             // this.handleClickContinue()
             return
         } else {

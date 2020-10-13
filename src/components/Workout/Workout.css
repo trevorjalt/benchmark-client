@@ -1,6 +1,7 @@
 .Workout__item {
     padding: 4vh;
-    background-color: lightgray;
+    /* background-image: linear-gradient(to right, #F9DBBD, #F5D1D8, #FCA17D); */
+    background: linear-gradient(to right, #2FA7FB,#41C5FD 3%,#5BE2F8,#90ECF2,#C5F5F1 35%, #DAFDFD, #C5F5F1 65%, #90ECF2, #5BE2F8, #41C5FD 97%, #2FA7FB);
     margin-bottom: 4vh;
-
+    border-radius: 20px;
 }
