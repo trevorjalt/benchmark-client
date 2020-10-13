@@ -55,23 +55,23 @@ export default class ExerciseSet extends Component {
             .then(this.setState({ setSubmit: !this.state.setSubmit }))
     }
 
-    onLocalRepetitionInputChange = event => {
-        this.setState({
-            updateExerciseSetRepetition: {
-                id: this.props.exerciseSet.id,
-                set_repetition: Number(event.target.value),
-            }
-        })
-    }
+    // onLocalRepetitionInputChange = event => {
+    //     this.setState({
+    //         updateExerciseSetRepetition: {
+    //             id: this.props.exerciseSet.id,
+    //             set_repetition: Number(event.target.value),
+    //         }
+    //     })
+    // }
 
-    onLocalWeightInputChange = event => {
-        this.setState({
-            updateExerciseSetWeight: {
-                id: this.props.exerciseSet.id,
-                set_weight: Number(event.target.value),
-            }
-        })
-    }
+    // onLocalWeightInputChange = event => {
+    //     this.setState({
+    //         updateExerciseSetWeight: {
+    //             id: this.props.exerciseSet.id,
+    //             set_weight: Number(event.target.value),
+    //         }
+    //     })
+    // }
 
     onRepetitionInputChange = event => {
         this.setState({
@@ -98,11 +98,11 @@ export default class ExerciseSet extends Component {
 
 
     renderExerciseSetState() {
-        const { continueWorkout, edit, exerciseSet, newWorkout } = this.props
+        const { error } = this.state
+        const { continueWorkout, exerciseSet, newWorkout } = this.props
         const vol = (exerciseSet.set_weight * exerciseSet.set_repetition)
 
         if (this.state.setSubmit) {
-
                 return (
                     <div className='SetItemUpdateForm'>
                         <div className='ExerciseSet__item'>
@@ -118,46 +118,51 @@ export default class ExerciseSet extends Component {
         } else if (continueWorkout || newWorkout) {
             return (
                 <div className='SetItemUpdateForm'>
-                <form
-                className='SetItemUpdateForm'
-                // onInput={event => this.handleFormChange(event)}
-                >
-                {/* <div role='alert'>
-                    {error && <p className='red'>{error}</p>}
-                </div> */}
-                <div className='weight'>
-                    <label htmlFor='SetItem__weight'>
-                        Weight
-                    </label>
-                    <input
-                        required
-                        name='set_weight'
-                        id='SetItem__weight'
-                        defaultValue={exerciseSet.set_weight}
-                        onInput={this.onWeightInputChange.bind(this)}
-                        >
-                        
-                    </input>
-                    <span> lbs </span>
+                    <form className='SetItemUpdateForm'>
+                        {/* <div role='alert'>
+                            {error && <p className='red'>{error}</p>}
+                        </div> */}
+                        <div className='weight'>
+                            <label htmlFor='SetItem__weight'>
+                                Weight
+                            </label>
+                            <input
+                                required
+                                name='set_weight'
+                                id='SetItem__weight'
+                                type='number'
+                                // aria-label='Weight'
+                                // aria-required='true'
+                                // aria-describedby='weightError'
+                                // // aria-invalid='true'
+                                defaultValue={exerciseSet.set_weight}
+                                onInput={this.onWeightInputChange.bind(this)}
+                            />
+                            <span> lbs </span>
+                            {/* <div
+                                className='errorMessage'
+                                id='weightError'>
+                                Please enter a valid number for your set weight
+                            </div> */}
+                        </div>
+                        <div className='repetition'>
+                            <label htmlFor='SetItem__repetition'>
+                                Reps
+                            </label>
+                            <input
+                                required
+                                name='set_repetition'
+                                type='number'
+                                id='SetItem__repetition'
+                                defaultValue={exerciseSet.set_repetition}
+                                onInput={this.onRepetitionInputChange.bind(this)}
+                                >
+                            </input>
+                        </div>
+                        {this.renderSubmitExerciseSetButton()}
+                        {this.renderDeleteExerciseSetButton()}
+                    </form>
                 </div>
-                <div className='repetition'>
-                    <label htmlFor='SetItem__repetition'>
-                        Reps
-                    </label>
-                    <input
-                        required
-                        name='set_repetition'
-                        type='integer'
-                        id='SetItem__repetition'
-                        defaultValue={exerciseSet.set_repetition}
-                        onInput={this.onRepetitionInputChange.bind(this)}
-                        >
-                    </input>
-                </div>
-                {this.renderSubmitExerciseSetButton()}
-                {this.renderDeleteExerciseSetButton()}
-            </form>
-            </div>
             )
         } else {
             return (

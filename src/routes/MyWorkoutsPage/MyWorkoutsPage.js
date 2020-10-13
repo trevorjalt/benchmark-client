@@ -22,7 +22,7 @@ export default class MyWorkoutsPage extends Component {
             <Workout 
                 key={workout.id}
                 workout={workout}
-            />       
+            />    
         )
     }
 

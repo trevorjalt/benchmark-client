@@ -91,7 +91,7 @@ export default class Exercise extends Component {
             updateExerciseName: {
                 id: exercise.id,
                 exercise_name: event.target.value,
-            }
+            },
         })
     }
 
@@ -104,7 +104,6 @@ export default class Exercise extends Component {
             <ExerciseSet
                 key={exerciseSet.id}
                 exerciseSet={exerciseSet}
-                // edit={this.props.edit}
                 onRepetitionChange={this.props.onRepetitionChange}
                 onWeightChange={this.props.onWeightChange}
                 handleClickComplete={this.props.handleClickComplete}

@@ -12,8 +12,8 @@ export default class Workout extends Component {
     static contextType = WorkoutContext
 
     state = { 
-        // edit: null,
         continueWorkout: null,
+        exerciseNameValue: null,
         touched: null,
         updateSet: {},
         addExercise: {},
@@ -69,10 +69,6 @@ export default class Workout extends Component {
             // .catch(this.context.setError())
     }
 
-    // handleClickEdit = () => {
-    //     this.setState({ edit: !this.state.edit })
-    // }
-
     handleClickTouched = () => {
         this.setState({ touched: !this.state.touched })
     }
@@ -88,10 +84,14 @@ export default class Workout extends Component {
         clearError()        
         setsToUpdate.map(element => WorkoutApiService.updateExerciseSet(element)
             .then(this.handleClickContinue())
-            .then(onUpdateExerciseSet(displayList))
-            .then(console.log('hey'))
+            .then(onUpdateExerciseSet(displayList))       
         )
+    }
 
+    handleKeyPressed = event => {
+        if (event.key === 'Enter') {
+            this.handleClickTouched()
+        }
     }
 
     onRepetitionChange = (id, set_repetition, exercise_id) => {
@@ -113,7 +113,8 @@ export default class Workout extends Component {
             addExercise: {
                 exercise_name: event.target.value,
                 workout_id: workout.id
-            }
+            },
+            exerciseNameValue: !this.state.exerciseNameValue,
         })
     }
 
@@ -173,8 +174,8 @@ export default class Workout extends Component {
         
         if(this.props.newWorkout || this.state.continueWorkout) {
             return (
-                <div>                       
-                    <WorkoutDate workout={workout} />
+                <div>                     
+                    <WorkoutDate workout={workout} /> 
                     {this.renderNewExercises()}
                     <form className='AddNewExerciseForm' onChange={this.onSelectExerciseChange}>
                             <label htmlFor='Exercise__select'>Select Exercise</label>
@@ -198,31 +199,37 @@ export default class Workout extends Component {
             )
         } else if (this.state.touched) {
             return (
-                <div>                       
-                    <WorkoutDate workout={workout} />
+                <div>
+                    <div 
+                        key={workout.id} 
+                        tabIndex='0'
+                        role='button'
+                        aria-expanded='false'
+                        onKeyDown={this.handleKeyPressed}
+                    >                         
+                        <WorkoutDate workout={workout} />
+                    </div>
                     <Section list className='MyExercises'>
                         {error
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderExercises()}
                     </Section>
-                    {/* {this.state.edit
-                        ? this.renderUpdateButton()
-                        : this.renderEditButton()
-                    } */}
                     {this.state.continueWorkout
                         ? this.renderCompleteButton()
                         : this.renderContinueButton()
                     }
-                    {/* {this.state.edit
-                        ? this.renderCancelButton()
-                        : ''
-                    } */}
                     {this.renderDeleteButton()}  
                 </div>    
             )
             } else {
                 return (
-                    <div>                       
+                    <div 
+                        key={workout.id} 
+                        tabIndex='0'
+                        role='button'
+                        aria-expanded='false'
+                        onKeyDown={this.handleKeyPressed}
+                    >                      
                         <WorkoutDate workout={workout} />
                     </div> 
             )}
@@ -233,6 +240,7 @@ export default class Workout extends Component {
             <Button 
                 className='ExerciseItem__add' 
                 type='button'
+                disabled={!this.state.exerciseNameValue}
                 onClick={this.handleClickAddExercise}
             >
                 Add Exercise
