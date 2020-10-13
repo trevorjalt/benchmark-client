@@ -57,17 +57,18 @@ export default class Workout extends Component {
 
     handleClickComplete = (event) => {
         event.preventDefault()
-        const { exerciseSetList = [], clearError, onUpdateExerciseSet } = this.context
+        const { exerciseSetList = [], onUpdateExerciseSet } = this.context
         const setsToUpdate = Object.keys(this.state.updateSet).map(key => ({ id: Number(key), ...this.state.updateSet[key] }))
         const updateList = exerciseSetList.map(el => setsToUpdate.find(e => e.id === el.id) || el) 
         const displayList = exerciseSetList.map((item, i) => {
             return (item.id === updateList[i].id) && Object.assign({},item,updateList[i])})  
         
         if (Object.keys(this.state.updateSet).length === 0) {
-            this.handleClickContinue()
+            this.setState({ error: 'No sets? A workout needs some numbers.'})
+            // this.handleClickContinue()
             return
         } else {
-            clearError()        
+            this.setState({ error: null })       
             setsToUpdate.map(element => WorkoutApiService.updateExerciseSet(element)
                 .then(this.handleClickContinue())
                 .then(onUpdateExerciseSet(displayList))
@@ -204,7 +205,9 @@ export default class Workout extends Component {
                             </select>
 
                     </form>
-                    
+                    {/* <div className='error-message' role='alert'>
+                        {error && <p className='red'>{error}</p>}
+                    </div> */}
                     {this.renderAddExerciseButton()}
                     {this.renderCompleteButton()} 
                 </div>
@@ -345,7 +348,7 @@ export default class Workout extends Component {
     // }
 
     render() {
-        if (this.state.redirect) {
+        if (this.state.redirect && this.props.newWorkout) {
             return <Redirect push to='/myworkouts' />
         } else {
         return (
