@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage Route renders without crashing 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "clearError": [Function],
+      "error": null,
+      "exerciseList": Array [],
+      "exerciseSetList": Array [],
+      "isLoggedIn": null,
+      "newWorkoutItem": Object {},
+      "onDeleteExercise": [Function],
+      "onDeleteExerciseSet": [Function],
+      "onDeleteWorkout": [Function],
+      "onUpdateExercise": [Function],
+      "onUpdateExerciseSet": [Function],
+      "setError": [Function],
+      "setExerciseList": [Function],
+      "setExerciseSetList": [Function],
+      "setIsLoggedIn": [Function],
+      "setWorkoutList": [Function],
+      "touched": undefined,
+      "workoutList": Array [],
+    }
+  }
+>
+  <LoginPage
+    history={
+      Object {
+        "push": [Function],
+      }
+    }
+    location={Object {}}
+  />
+</ContextProvider>
+`;

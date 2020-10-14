@@ -191,16 +191,16 @@ export default class Workout extends Component {
                             {error && <p className='red'>{error}</p>}
                     </div>
                     <form className='AddNewExerciseForm' onChange={this.onSelectExerciseChange}>
-                            <label htmlFor='Exercise__select'></label>
-                            <select name='Exercise__select' id='Exercise__select' className='Exercise__select'>
-                                <option value=''>Select Exercise</option>
-                                <option value='Squat'>Squat</option>
-                                <option value='Bench'>Bench</option>
-                                <option value='Row'>Row</option>
-                                <option value='Deadlift'>DeadLift</option>
-                                <option value='Military Press'>Military Press</option>
-                                <option value='Clean'>Clean</option>
-                            </select>
+                        <label htmlFor='Exercise__select'></label>
+                        <select name='Exercise__select' id='Exercise__select' className='Exercise__select'>
+                            <option value=''>Select Exercise</option>
+                            <option value='Squat'>Squat</option>
+                            <option value='Bench'>Bench</option>
+                            <option value='Row'>Row</option>
+                            <option value='Deadlift'>DeadLift</option>
+                            <option value='Military Press'>Military Press</option>
+                            <option value='Clean'>Clean</option>
+                        </select>
                     </form>
                     <div className="WorkoutItem__buttons">
                         {this.renderAddExerciseButton()}

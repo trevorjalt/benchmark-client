@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer Component renders without crashing 1`] = `
+<div
+  className="Footer"
+>
+  <h4
+    className="footer-copy"
+  >
+    © Copyright Trevor J Alt. All Rights Reserved.
+  </h4>
+</div>
+`;

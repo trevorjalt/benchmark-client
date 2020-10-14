@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegistrationForm Component renders without crashing 1`] = `
+<div>
+  <h3>
+    Set your benchMark today
+  </h3>
+  <form
+    className="RegistrationForm"
+    onSubmit={[Function]}
+  >
+    <div
+      role="alert"
+    />
+    <div
+      className="username"
+    >
+      <label
+        htmlFor="RegistrationForm__username"
+      >
+        Username 
+        <Required />
+      </label>
+      <Input
+        id="RegistrationForm_username"
+        name="username"
+        required={true}
+        type="text"
+      />
+    </div>
+    <div
+      className="email"
+    >
+      <label
+        htmlFor="RegistrationForm__email"
+      >
+        Email 
+        <Required />
+      </label>
+      <Input
+        id="RegistrationForm_email"
+        name="email"
+        required={true}
+        type="email"
+      />
+    </div>
+    <div
+      className="user_password"
+    >
+      <label
+        htmlFor="RegistrationForm__password"
+      >
+        Password 
+        <Required />
+      </label>
+      <Input
+        id="RegistrationForm__password"
+        name="user_password"
+        required={true}
+        type="password"
+      />
+    </div>
+    <div
+      className="user_password_match"
+    >
+      <label
+        htmlFor="RegistrationForm__password_match"
+      >
+        Re-Enter Password 
+        <Required />
+      </label>
+      <Input
+        id="RegistrationForm__password_match"
+        name="user_password_match"
+        required={true}
+        type="password"
+      />
+    </div>
+    <div
+      className="Register__button"
+    >
+      <Button
+        className="RegisterSubmit"
+        type="submit"
+      >
+        <img
+          alt="Register"
+          className="Register__icon"
+          src="register-icon.png"
+        />
+        Register
+      </Button>
+    </div>
+  </form>
+</div>
+`;

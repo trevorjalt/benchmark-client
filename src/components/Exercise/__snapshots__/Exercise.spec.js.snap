@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Exercise Component renders without crashing 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "clearError": [Function],
+      "error": null,
+      "exerciseList": Array [],
+      "exerciseSetList": Array [],
+      "isLoggedIn": null,
+      "newWorkoutItem": Object {},
+      "onDeleteExercise": [Function],
+      "onDeleteExerciseSet": [Function],
+      "onDeleteWorkout": [Function],
+      "onUpdateExercise": [Function],
+      "onUpdateExerciseSet": [Function],
+      "setError": [Function],
+      "setExerciseList": [Function],
+      "setExerciseSetList": [Function],
+      "setIsLoggedIn": [Function],
+      "setWorkoutList": [Function],
+      "touched": undefined,
+      "workoutList": Array [],
+    }
+  }
+>
+  <Exercise
+    exercise={
+      Object {
+        "exercise_name": "Limit Breaker",
+        "id": 1,
+        "workout_id": 1,
+      }
+    }
+  />
+</ContextProvider>
+`;

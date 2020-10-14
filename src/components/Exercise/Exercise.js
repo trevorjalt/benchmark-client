@@ -15,6 +15,7 @@ export default class Exercise extends Component {
 
     state = {
         editExerciseName: null,
+        exerciseNameValue: '',
         addExerciseSet: [],
         updateExerciseName: [],
     }
@@ -32,7 +33,6 @@ export default class Exercise extends Component {
             WorkoutApiService.getExerciseSets()
                 .then(this.context.setExerciseSetList)
                 .catch(this.context.setError)
-
         }
     }
 
@@ -56,7 +56,6 @@ export default class Exercise extends Component {
         clearError()
         WorkoutApiService.deleteExercise(exercise.id)
             .then(onDeleteExercise(newList))
-
     }
 
     handleClickEditExerciseName = () => {
@@ -70,10 +69,14 @@ export default class Exercise extends Component {
             item.id === this.state.updateExerciseName.id 
             ? Object.assign({},item,this.state.updateExerciseName) : item )
 
-        clearError()
-        WorkoutApiService.updateExercise(this.state.updateExerciseName)
-            .then(onUpdateExercise(displayList))
-            .then(this.setState({ editExerciseName: !this.state.editExerciseName }))
+        if(this.state.exerciseNameValue === '') {
+            this.handleClickEditExerciseName()
+        } else {
+            clearError()
+            WorkoutApiService.updateExercise(this.state.updateExerciseName)
+                .then(onUpdateExercise(displayList))
+                .then(this.setState({ editExerciseName: !this.state.editExerciseName }))
+        }
     }
 
     onSelectExerciseNameChange = (event) => {
@@ -83,6 +86,7 @@ export default class Exercise extends Component {
                 id: exercise.id,
                 exercise_name: event.target.value,
             },
+            exerciseNameValue: event.target.value,
         })
     }
 
@@ -112,32 +116,29 @@ export default class Exercise extends Component {
             return (
                 <div>
                     <div className='ExerciseNameUpdate'>
-                <form className='EditExerciseNameForm' onChange={this.onSelectExerciseNameChange}>
-                        <label htmlFor='ExerciseName__select'></label>
-                        <select name='ExerciseName__select' id='ExerciseName__select' className='ExerciseName__select'>
-                            <option value=''>Select Name</option>
-                            <option value='Squat'>Squat</option>
-                            <option value='Bench'>Bench</option>
-                            <option value='Row'>Row</option>
-                            <option value='Deadlift'>DeadLift</option>
-                            <option value='Military Press'>Military Press</option>
-                            <option value='Clean'>Clean</option>
-                        </select>
-
-                </form>
-                
-                    {this.renderSubmitExerciseNameButton()}
-                </div>
-                <section className='MyExerciseSets'>
+                        <form className='EditExerciseNameForm' onChange={this.onSelectExerciseNameChange}>
+                            <label htmlFor='ExerciseName__select'></label>
+                            <select name='ExerciseName__select' id='ExerciseName__select' className='ExerciseName__select'>
+                                <option value=''>Select Name</option>
+                                <option value='Squat'>Squat</option>
+                                <option value='Bench'>Bench</option>
+                                <option value='Row'>Row</option>
+                                <option value='Deadlift'>DeadLift</option>
+                                <option value='Military Press'>Military Press</option>
+                                <option value='Clean'>Clean</option>
+                            </select>
+                        </form>               
+                        {this.renderSubmitExerciseNameButton()}
+                    </div>
+                    <section className='MyExerciseSets'>
                         {error
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderExerciseSets()}
-                </section>
-                <div className='ExerciseSetItem__buttons'>
-                    {this.renderAddExerciseSetButton()}    
-                </div>      
-            </div>
-                
+                    </section>
+                    <div className='ExerciseSetItem__buttons'>
+                        {this.renderAddExerciseSetButton()}    
+                    </div>      
+                </div>            
             ) 
         } else if (continueWorkout || newWorkout) {
             return (
@@ -163,7 +164,7 @@ export default class Exercise extends Component {
                     <div className='ExerciseItem___header'>
                         <h2 className='ExerciseItem__name'>{exercise.exercise_name}</h2>
                     </div>
-                    <section list className='MyExerciseSets'>
+                    <section className='MyExerciseSets'>
                             {error
                             ? <p className='red'>Whoops! There was an error</p>
                             : this.renderExerciseSets()}
