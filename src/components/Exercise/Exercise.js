@@ -125,11 +125,11 @@ export default class Exercise extends Component {
 
                 </form>
                 {this.renderSubmitExerciseNameButton()}
-                <Section list className='MyExerciseSets'>
+                <section className='MyExerciseSets'>
                         {error
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderExerciseSets()}
-                </Section>
+                </section>
                 <div className='ExerciseSetItem__buttons'>
                     {this.renderAddExerciseSetButton()}    
                 </div>      
@@ -144,11 +144,11 @@ export default class Exercise extends Component {
                         {this.renderEditExerciseNameButton()}
                         {this.renderDeleteExerciseButton()}
                     </div>
-                    <Section list className='MyExerciseSets'>
+                    <section className='MyExerciseSets'>
                             {error
                             ? <p className='red'>Whoops! There was an error</p>
                             : this.renderExerciseSets()}
-                    </Section>
+                    </section>
                     <div className='ExerciseSetItem__buttons'>
                         {this.renderAddExerciseSetButton()}
                     </div>
@@ -160,11 +160,11 @@ export default class Exercise extends Component {
                     <div className='ExerciseItem___header'>
                         <h2 className='ExerciseItem__name'>{exercise.exercise_name}</h2>
                     </div>
-                    <Section list className='MyExerciseSets'>
+                    <section list className='MyExerciseSets'>
                             {error
                             ? <p className='red'>Whoops! There was an error</p>
                             : this.renderExerciseSets()}
-                    </Section>             
+                    </section>             
                 </div>
             )            
         }
