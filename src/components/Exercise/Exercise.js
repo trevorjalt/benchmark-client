@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import WorkoutContext from '../../contexts/WorkoutContext'
 import WorkoutApiService from '../../services/workout-api-service'
-import { Button, Section } from '../Utils/Utils'
+import { Button } from '../Utils/Utils'
 import ExerciseSet from '../ExerciseSet/ExerciseSet'
 import AddIcon from './images/add-exercise-set-icon.png'
 import DeleteIcon from './images/delete-exercise-icon.png'

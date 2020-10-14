@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import WorkoutContext from '../../contexts/WorkoutContext'
 import WorkoutApiService from '../../services/workout-api-service'
 import { Button } from '../Utils/Utils'
+import DeleteIcon from '../Exercise/images/delete-exercise-icon.png'
+import EditIcon from '../Exercise/images/edit-exercise-icon.png'
+import SubmitIcon from '../Exercise/images/submit-exercise-icon.png'
 import './ExerciseSet.css'
 
 
@@ -80,15 +83,15 @@ export default class ExerciseSet extends Component {
 
         if (this.state.setSubmit) {
                 return (
-                    <div className='SetItemUpdateForm'>
+                    <div className='ExerciseSetItemUpdateForm'>
                         <div className='ExerciseSetItem'>
-                            <div className='ExerciseSetItem__weight'>Weight: 
+                            <div className='NewExerciseSet__weight'>Weight: 
                                 <span className='ExerciseSetItem__data'>{exerciseSet.set_weight} lbs</span>
                             </div>
-                            <div className='ExerciseSetItem__repetition'>Reps: 
+                            <div className='NewExerciseSet__repetition'>Reps: 
                                 <span className='ExerciseSetItem__data'>{exerciseSet.set_repetition}</span>
                             </div>
-                            <div className='ExerciseSetItem__volume'>Vol: 
+                            <div className='NewExerciseSet__volume'>Vol: 
                                 <span className='ExerciseSetItem__data'>{vol} lbs</span>
                             </div>
                         </div>
@@ -102,8 +105,9 @@ export default class ExerciseSet extends Component {
                     <div className='error-message' role='alert'>
                         {error && <p className='red'>{error}</p>}
                     </div>
-                    <form className='SetItemUpdateForm'>
-                        <div className='weight'>
+                    <form className='ExerciseSetItemUpdateForm'>
+                    <div className='ExerciseSetItem'>
+                        <div className='set_weight'>
                             <label htmlFor='SetItem__weight'>
                                 Weight
                             </label>
@@ -119,7 +123,7 @@ export default class ExerciseSet extends Component {
                                 defaultValue={exerciseSet.set_weight}
                                 onInput={this.onWeightInputChange.bind(this)}
                             />
-                            <span> lbs </span>
+                            <span className='ExerciseSetPounds'>lbs</span>
                             {/* <div
                                 className='errorMessage'
                                 id='weightError'
@@ -144,6 +148,7 @@ export default class ExerciseSet extends Component {
                         </div>
                         {this.renderSubmitExerciseSetButton()}
                         {this.renderDeleteExerciseSetButton()}
+                    </div>
                     </form>
                 </div>
             )
@@ -171,7 +176,7 @@ export default class ExerciseSet extends Component {
                 type='button'
                 onClick={this.handleClickDeleteExerciseSet}
             >
-                🗑
+                <img src={DeleteIcon} alt='Delete exercise set icon' className='ExerciseSetItem__delete-icon' />
             </Button>
         )
     }
@@ -183,7 +188,7 @@ export default class ExerciseSet extends Component {
                 type='button'
                 onClick={this.handleClickEditExerciseSet}
             >
-                ✎
+                <img src={EditIcon} alt='Edit exercise set icon' className='ExerciseSetItem__edit-icon' />
             </Button>
         )
     }
@@ -191,11 +196,11 @@ export default class ExerciseSet extends Component {
     renderSubmitExerciseSetButton() {
         return (
             <Button
-                className='test_button'
+                className='ExerciseSetItem__submit'
                 type='submit'
                 onClick={this.handleClickSubmitExerciseSet}
             >                
-                ✔ 
+                <img src={SubmitIcon} alt='Submit exercise set icon' className='ExerciseSetItem__submit-icon' />
             </Button>
         )
     }
