@@ -191,9 +191,9 @@ export default class Workout extends Component {
                             {error && <p className='red'>{error}</p>}
                     </div>
                     <form className='AddNewExerciseForm' onChange={this.onSelectExerciseChange}>
-                            <label htmlFor='Exercise__select'>Select Exercise:</label>
+                            <label htmlFor='Exercise__select'></label>
                             <select name='Exercise__select' id='Exercise__select' className='Exercise__select'>
-                                <option value=''>Select</option>
+                                <option value=''>Select Exercise</option>
                                 <option value='Squat'>Squat</option>
                                 <option value='Bench'>Bench</option>
                                 <option value='Row'>Row</option>

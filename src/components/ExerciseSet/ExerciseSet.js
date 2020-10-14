@@ -108,7 +108,7 @@ export default class ExerciseSet extends Component {
                     <form className='ExerciseSetItemUpdateForm'>
                     <div className='ExerciseSetItem'>
                         <div className='set_weight'>
-                            <label htmlFor='SetItem__weight'>
+                            <label htmlFor='SetItem__weight' className='ExerciseSetLabel'>
                                 Weight
                             </label>
                             <input
@@ -133,7 +133,7 @@ export default class ExerciseSet extends Component {
                             </div> */}
                         </div>
                         <div className='repetition'>
-                            <label htmlFor='SetItem__repetition'>
+                            <label htmlFor='SetItem__repetition' className='ExerciseSetLabel'>
                                 Reps
                             </label>
                             <input

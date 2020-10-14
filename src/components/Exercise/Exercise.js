@@ -111,10 +111,11 @@ export default class Exercise extends Component {
         if (this.state.editExerciseName) {
             return (
                 <div>
+                    <div className='ExerciseNameUpdate'>
                 <form className='EditExerciseNameForm' onChange={this.onSelectExerciseNameChange}>
                         <label htmlFor='ExerciseName__select'></label>
-                        <select name='ExerciseName__select' id='ExerciseName__select'>
-                            <option value=''>Select</option>
+                        <select name='ExerciseName__select' id='ExerciseName__select' className='ExerciseName__select'>
+                            <option value=''>Select Name</option>
                             <option value='Squat'>Squat</option>
                             <option value='Bench'>Bench</option>
                             <option value='Row'>Row</option>
@@ -124,7 +125,9 @@ export default class Exercise extends Component {
                         </select>
 
                 </form>
-                {this.renderSubmitExerciseNameButton()}
+                
+                    {this.renderSubmitExerciseNameButton()}
+                </div>
                 <section className='MyExerciseSets'>
                         {error
                         ? <p className='red'>Whoops! There was an error</p>

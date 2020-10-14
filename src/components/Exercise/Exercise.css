@@ -29,6 +29,21 @@
     height: 3.5vh;
 }
 
+.ExerciseName__select {
+    padding: 1.5vh 0 1.5vh 0;
+    font-size: 2vh;
+    border-radius: 20px;
+    border: .2vw solid;
+    border-color: #F78F38;
+    margin-right: 1vw;
+}
+
+.ExerciseNameUpdate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .ExerciseSetItem__buttons {
     display: flex;
     justify-content: center;
