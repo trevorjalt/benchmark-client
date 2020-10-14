@@ -119,13 +119,19 @@ export default class Exercise extends Component {
                         <form className='EditExerciseNameForm' onChange={this.onSelectExerciseNameChange}>
                             <label htmlFor='ExerciseName__select'></label>
                             <select name='ExerciseName__select' id='ExerciseName__select' className='ExerciseName__select'>
-                                <option value=''>Select Name</option>
-                                <option value='Squat'>Squat</option>
+                                <option value=''>Select Exercise</option>
+                                <option value='Ab Pulldown'>Ab Pulldown</option>                           
                                 <option value='Bench'>Bench</option>
-                                <option value='Row'>Row</option>
-                                <option value='Deadlift'>DeadLift</option>
-                                <option value='Military Press'>Military Press</option>
+                                <option value='Bicep Curls'>Bicep Curls</option>
                                 <option value='Clean'>Clean</option>
+                                <option value='Deadlift'>DeadLift</option>
+                                <option value='Dips'>Dips</option>
+                                <option value='Lat Pulldown'>Lat Pulldown</option>
+                                <option value='Military Press'>Military Press</option>
+                                <option value='Pull Ups'>Pull Ups</option>
+                                <option value='Row'>Row</option>
+                                <option value='Squat'>Squat</option>
+                                <option value='Tri Extension'>Tri Extension</option>
                             </select>
                         </form>               
                         {this.renderSubmitExerciseNameButton()}
