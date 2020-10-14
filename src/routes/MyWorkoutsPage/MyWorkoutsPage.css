@@ -4,3 +4,8 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.MyWorkouts__title {
+    margin-bottom: 7vh;
+    font-size: 4.5vh;
+}

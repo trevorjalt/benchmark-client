@@ -25,14 +25,14 @@ export default class Header extends Component {
         return (
             <div className='Header__logged-in'>
                 <Link
-                    to='/myworkourts'
+                    to='/myworkouts'
                     className='navItem'
                 >
                     <img src={MyWorkoutsIcon} alt='My workouts icon' className='navIcon'></img>
                     <p className='navItem__text'>myWorkouts</p>
                 </Link>
                 <Link
-                    to='/newWorkout'
+                    to='/newworkout'
                     className='navItem'
                 >
                     <img src={NewWorkoutIcon} alt='New workout icon' className='navIcon'></img>

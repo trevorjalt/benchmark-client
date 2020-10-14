@@ -32,8 +32,8 @@ export default class MyWorkoutsPage extends Component {
         
         return (
             <div className='MyWorkoutsPage'>
-                <h1>myWorkouts</h1>
-                <Section list>
+                <h1 className='MyWorkouts__title'>myWorkouts</h1>
+                <Section>
                     {error
                     ? <p className='red'>Whoops! There was an error</p>
                     : this.renderWorkouts()}

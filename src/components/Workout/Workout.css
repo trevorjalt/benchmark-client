@@ -1,7 +1,53 @@
+.AddNewExerciseForm {
+    margin: 3vh;
+    font-size: 2.5vh;
+    font-weight: bold;
+}
+
+.Exercise__select {
+    padding: 1.5vh 0 1.5vh 0;
+    font-size: 2vh;
+    border-radius: 20px;
+    border: .2vw solid;
+    border-color: #F78F38;
+    margin: 0 0 2vw 1vw;
+
+}
+
+.MyExercises {
+    text-align: center;
+    background-color: #FEEFDD;
+    margin: 6vh 0 6vh 0;
+}
+
 .Workout__item {
-    padding: 4vh;
-    /* background-image: linear-gradient(to right, #F9DBBD, #F5D1D8, #FCA17D); */
+    padding: 4vh 0 4vh 0;
     background: linear-gradient(to right, #2FA7FB,#41C5FD 3%,#5BE2F8,#90ECF2,#C5F5F1 35%, #DAFDFD, #C5F5F1 65%, #90ECF2, #5BE2F8, #41C5FD 97%, #2FA7FB);
     margin-bottom: 4vh;
     border-radius: 20px;
+}
+
+.WorkoutItem__buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.WorkoutItem__continue, .WorkoutItem__delete, .WorkoutItem__complete, .ExerciseItem__add {
+    display: flex;
+    align-items: center;
+    margin: 0 2vw 2vh 2vw;
+}
+
+.WorkoutItem__continue-icon, .WorkoutItem__delete-icon, .WorkoutItem__complete-icon, .ExerciseItem__add-icon {
+    height: 4vh;
+    margin-right: 1vw;
+}
+
+.WorkoutItem__date {
+    font-size: 3.2vh;
+}
+
+.WorkoutItem__date-expanded {
+    font-size: 3.2vh;
+    margin-bottom: 6vh;
 }

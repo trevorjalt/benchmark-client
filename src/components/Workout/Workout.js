@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
 import WorkoutContext from '../../contexts/WorkoutContext'
 import WorkoutApiService from '../../services/workout-api-service'
-import { NiceDate, Section, Button } from '../Utils/Utils'
+import AddExerciseIcon from './images/add-exercise-icon.png'
+import CompleteIcon from './images/complete-workout-icon.png'
+import ContinueIcon from './images/continue-workout-icon.png'
+import DeleteIcon from './images/delete-workout-icon2.png'
+import { NiceDate, Button } from '../Utils/Utils'
 import { parseISO } from 'date-fns'
 import Exercise from '../Exercise/Exercise'
 import './Workout.css'
-
 
 
 export default class Workout extends Component {
@@ -33,12 +36,10 @@ export default class Workout extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.newExerciseList !== this.state.newExerciseList) {
             this.context.clearError()
-            // WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
-                // .then(this.setState({ newWorkout: !this.state.newWorkout }))
+
             WorkoutApiService.getExercises()
                 .then(this.context.setExerciseList)
                 .catch(this.context.setError)
-
         }
     }
 
@@ -66,8 +67,6 @@ export default class Workout extends Component {
         if (Object.keys(this.state.updateSet).length === 0) {
             this.setState({ redirect: true })
             this.handleClickContinue()
-            // this.setState({ error: 'No sets? A workout needs some numbers.'})
-            // this.handleClickContinue()
             return
         } else {
             this.setState({ error: null })       
@@ -75,8 +74,7 @@ export default class Workout extends Component {
                 .then(this.handleClickContinue())
                 .then(onUpdateExerciseSet(displayList))
                 .then(this.setState({ redirect: true }))     
-            )
-            
+            )           
         }
     }
 
@@ -93,7 +91,6 @@ export default class Workout extends Component {
         clearError()
         WorkoutApiService.deleteWorkout(workout.id)
             .then(onDeleteWorkout(newList))
-            // .catch(this.context.setError())
     }
 
     handleClickTouched = () => {
@@ -153,7 +150,6 @@ export default class Workout extends Component {
                 key={exercise.id}
                 exercise={exercise}
                 edit={this.state.edit}
-                // continueWorkout={this.state.continueWorkout}
                 onRepetitionChange={this.onRepetitionChange}
                 onWeightChange={this.onWeightChange}
                 handleClickComplete={this.handleClickComplete}
@@ -188,15 +184,15 @@ export default class Workout extends Component {
             return (
                 <div>                     
                     <WorkoutDate workout={workout} /> 
-                    {this.renderNewExercises()}
-                    <div className='error-message' role='alert'>
-                        {error && <p className='red'>{error}</p>}
+                    <div className='MyExercises'>
+                        {this.renderNewExercises()}
+                        <div className='error-message' role='alert'>
+                            {error && <p className='red'>{error}</p>}
+                        </div>
                     </div>
                     <form className='AddNewExerciseForm' onChange={this.onSelectExerciseChange}>
-                            <label htmlFor='Exercise__select'>Select Exercise</label>
-                            <select name='Exercise__select' id='Exercise__select'
-                            // onChange={(event) => this.context.filterSelect(event.target.value)}
-                            >
+                            <label htmlFor='Exercise__select'>Select Exercise:</label>
+                            <select name='Exercise__select' id='Exercise__select' className='Exercise__select'>
                                 <option value=''>Select</option>
                                 <option value='Squat'>Squat</option>
                                 <option value='Bench'>Bench</option>
@@ -205,13 +201,11 @@ export default class Workout extends Component {
                                 <option value='Military Press'>Military Press</option>
                                 <option value='Clean'>Clean</option>
                             </select>
-
                     </form>
-                    {/* <div className='error-message' role='alert'>
-                        {error && <p className='red'>{error}</p>}
-                    </div> */}
-                    {this.renderAddExerciseButton()}
-                    {this.renderCompleteButton()} 
+                    <div className="WorkoutItem__buttons">
+                        {this.renderAddExerciseButton()}
+                        {this.renderCompleteButton()}
+                    </div> 
                 </div>
             )
         } else if (this.state.touched) {
@@ -226,16 +220,20 @@ export default class Workout extends Component {
                     >                         
                         <WorkoutDate workout={workout} />
                     </div>
-                    <Section list className='MyExercises'>
+                    <div>
+                    <section className='MyExercises'>
                         {error
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderExercises()}
-                    </Section>
-                    {this.state.continueWorkout
-                        ? this.renderCompleteButton()
-                        : this.renderContinueButton()
-                    }
-                    {this.renderDeleteButton()}  
+                    </section>
+                    </div>
+                    <div className="WorkoutItem__buttons">
+                        {this.state.continueWorkout
+                            ? this.renderCompleteButton()
+                            : this.renderContinueButton()
+                        }
+                        {this.renderDeleteButton()}  
+                    </div>
                 </div>    
             )
             } else {
@@ -259,22 +257,11 @@ export default class Workout extends Component {
                 type='button'
                 onClick={this.handleClickAddExercise}
             >
+                <img src={AddExerciseIcon} alt='Add exercise icon' className='ExerciseItem__add-icon' />
                 Add Exercise
             </Button>
         )
     }
-
-    // renderCancelButton() {
-    //     return (
-    //         <Button 
-    //             className='WorkoutItem__cancel' 
-    //             type='button'
-    //             onClick={this.handleClickEdit}
-    //         >
-    //             Cancel
-    //         </Button>
-    //     )
-    // }
 
     renderCompleteButton() {
         return (
@@ -283,6 +270,7 @@ export default class Workout extends Component {
                 type='button'
                 onClick={this.handleClickComplete}
             >
+                <img src={CompleteIcon} alt='Complete workout icon' className='WorkoutItem__complete-icon' />
                 Complete
             </Button>
         )
@@ -294,8 +282,9 @@ export default class Workout extends Component {
                 className='WorkoutItem__continue' 
                 type='button'
                 onClick={this.handleClickContinue}
-            >
-                Continue
+            >               
+                <img src={ContinueIcon} alt='Continue workout icon' className='WorkoutItem__continue-icon' />
+                Continue               
             </Button>
         )
     }
@@ -307,47 +296,11 @@ export default class Workout extends Component {
                 type='button'
                 onClick={this.handleClickDelete}
             >
+                <img src={DeleteIcon} alt='Delete workout icon' className='WorkoutItem__delete-icon' />
                 Delete
             </Button>
         )
     }
-
-    // renderDeleteExerciseButton() {
-    //     return (
-    //         <Button 
-    //             className='ExerciseItem__delete' 
-    //             type='button'
-    //             onClick={this.handleClickDeleteExercise}
-    //         >
-    //             Delete
-    //         </Button>
-    //     )
-    // }
-
-    // renderEditButton() {
-    //     return (
-    //         <Button 
-    //             className='WorkoutItem__edit' 
-    //             type='button'
-    //             onClick={this.handleClickEdit}
-    //         >
-    //             Edit
-    //         </Button>
-    //     )
-    // }
-
-
-    // renderUpdateButton() {
-    //     return (
-    //         <Button 
-    //             className='WorkoutItem__update' 
-    //             type='button'
-    //             onClick={this.handleClickUpdate}
-    //         >
-    //             Update
-    //         </Button>
-    //     )
-    // }
 
     render() {
         if (this.state.redirect && this.props.newWorkout) {
@@ -364,7 +317,7 @@ export default class Workout extends Component {
 
 function WorkoutDate({ workout }) {
     return (
-        <h2 className='Workout__date'>
+        <h2 className='WorkoutItem__date'>
             <NiceDate
                 date={parseISO(workout.date_created)}
             />
