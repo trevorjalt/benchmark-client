@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
-import goku from './styles/images/goku.png'
-import goku2 from './styles/images/goku2.png'
-import goku3 from './styles/images/goku3.png'
-import './styles/Landing.css'
+import goku from './images/goku.png'
+import goku2 from './images/goku2.png'
+import goku3 from './images/goku3.png'
+import './Landing.css'
 
 export default class Landing extends Component {
     render() {
         return (
             <div>
-                <h1>benchmark</h1>
+                <div className='LandingPageTitle'>
+                    <h1>benchmark</h1>
+                </div>
                 <h2>A sensible way to track your strength-training progress.</h2>
+                
                 <section>
                     <h3>Ditch your pen and paper</h3>
                     <img src={goku} alt='goku' />

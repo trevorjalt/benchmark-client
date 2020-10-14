@@ -3,6 +3,7 @@ import WorkoutContext from '../../contexts/WorkoutContext'
 import WorkoutApiService from '../../services/workout-api-service'
 import { Section, Button } from '../../components/Utils/Utils'
 import Workout from '../../components/Workout/Workout'
+import './NewWorkoutPage.css'
 
 export default class NewWorkoutPage extends Component {
     static contextType = WorkoutContext
@@ -59,9 +60,9 @@ export default class NewWorkoutPage extends Component {
         
         if (this.state.newWorkout) {
             return (
-                <div>
-                    <h1>today</h1>
-                    <Section list className='MyWorkoutsPage'>
+                <div className='NewWorkoutPage'>
+                    <h1 className='NewWorkout__title'>today</h1>
+                    <Section>
                         {error
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderNewWorkout()}
@@ -70,9 +71,9 @@ export default class NewWorkoutPage extends Component {
             )
         } else {
             return (
-                <div>
-                    <h1>today</h1>
-                    <Section list className='MyWorkoutsPage'>
+                <div className='NewWorkoutPage'>
+                    <h1 className='NewWorkout__title'>today</h1>
+                    <Section>
                         {error
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderNewWorkoutButton()}

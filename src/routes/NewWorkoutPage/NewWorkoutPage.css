@@ -1,0 +1,11 @@
+.NewWorkoutPage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.NewWorkout__title {
+    margin-bottom: 7vh;
+    font-size: 4.5vh;
+}

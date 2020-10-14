@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import AuthApiService from '../../services/auth-api-service'
 import WorkoutContext from '../../contexts/WorkoutContext'
 import { Button, Input } from '../Utils/Utils'
+import LoginIcon from '../Header/images/login-icon.png'
+import './LoginForm.css'
 
 export default class LoginForm extends Component {
     static defaultProps = {
@@ -74,9 +76,15 @@ export default class LoginForm extends Component {
                         id='LoginForm__password'>
                     </Input>
                 </div>
-                <Button type='submit'>
-                    Login
-                </Button>
+                <div className='Login__button'>
+                    <Button 
+                        className='LoginSubmit'
+                        type='submit'
+                    >
+                        <img src={LoginIcon} alt='Login' className='Login__icon' />
+                        Login
+                    </Button>
+                </div>
             </form>
         )
     }

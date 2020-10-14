@@ -1,5 +1,15 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height:100%; 
+    position:relative; 
+    padding-bottom: 10vh;
+}
+
 main {
-    text-align: center
+    text-align: center;
 }
 
 h1 {

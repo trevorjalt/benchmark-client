@@ -1,0 +1,16 @@
+.Login__icon {
+    height: 4vh;
+    margin-right: 1vw;
+}
+
+.Login__button {
+    display: flex;
+    justify-content: center;
+}
+
+.LoginSubmit {
+    display: flex;
+    align-items: center;
+    margin: 4vh 0 4vh 0;
+
+}
