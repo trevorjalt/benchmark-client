@@ -3,6 +3,10 @@ import WorkoutContext from '../../contexts/WorkoutContext'
 import WorkoutApiService from '../../services/workout-api-service'
 import { Button, Section } from '../Utils/Utils'
 import ExerciseSet from '../ExerciseSet/ExerciseSet'
+import AddIcon from './images/add-exercise-set-icon.png'
+import DeleteIcon from './images/delete-exercise-icon.png'
+import EditIcon from './images/edit-exercise-icon.png'
+import SubmitIcon from './images/submit-exercise-icon.png'
 import './Exercise.css'
 
 
@@ -25,8 +29,6 @@ export default class Exercise extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.addExerciseSet !== this.state.addExerciseSet) {
             this.context.clearError()
-            // WorkoutApiService.getExerciseItem(this.state.newExerciseList.id)
-                // .then(this.setState({ newWorkout: !this.state.newWorkout }))
             WorkoutApiService.getExerciseSets()
                 .then(this.context.setExerciseSetList)
                 .catch(this.context.setError)
@@ -71,8 +73,6 @@ export default class Exercise extends Component {
         clearError()
         WorkoutApiService.updateExercise(this.state.updateExerciseName)
             .then(onUpdateExercise(displayList))
-                // .then(data => this.setState({ updateExerciseName: data }))
-            // .then(this.context.setExerciseList)
             .then(this.setState({ editExerciseName: !this.state.editExerciseName }))
     }
 
@@ -100,8 +100,7 @@ export default class Exercise extends Component {
                 handleClickComplete={this.props.handleClickComplete}
                 newWorkout={this.props.newWorkout}
                 continueWorkout={this.props.continueWorkout}
-            />
-        
+            />       
         )
     }
 
@@ -114,9 +113,7 @@ export default class Exercise extends Component {
                 <div>
                 <form className='EditExerciseNameForm' onChange={this.onSelectExerciseNameChange}>
                         <label htmlFor='ExerciseName__select'></label>
-                        <select name='ExerciseName__select' id='ExerciseName__select'
-                        // onChange={(event) => this.context.filterSelect(event.target.value)}
-                        >
+                        <select name='ExerciseName__select' id='ExerciseName__select'>
                             <option value=''>Select</option>
                             <option value='Squat'>Squat</option>
                             <option value='Bench'>Bench</option>
@@ -133,8 +130,9 @@ export default class Exercise extends Component {
                         ? <p className='red'>Whoops! There was an error</p>
                         : this.renderExerciseSets()}
                 </Section>
-                {this.renderAddExerciseSetButton()}
-                <span>Exercise Vol: # lbs</span>              
+                <div className='ExerciseSetItem__buttons'>
+                    {this.renderAddExerciseSetButton()}    
+                </div>      
             </div>
                 
             ) 
@@ -142,7 +140,7 @@ export default class Exercise extends Component {
             return (
                 <div>
                     <div className='ExerciseItem___header'>
-                        <h2>{exercise.exercise_name}</h2>
+                        <h2 className='ExerciseItem__name-in-progress'>{exercise.exercise_name}</h2>
                         {this.renderEditExerciseNameButton()}
                         {this.renderDeleteExerciseButton()}
                     </div>
@@ -151,20 +149,22 @@ export default class Exercise extends Component {
                             ? <p className='red'>Whoops! There was an error</p>
                             : this.renderExerciseSets()}
                     </Section>
-                    {this.renderAddExerciseSetButton()}
-                    <span>Exercise Vol: # lbs</span>
+                    <div className='ExerciseSetItem__buttons'>
+                        {this.renderAddExerciseSetButton()}
+                    </div>
                 </div>
             )
         } else {
             return (
-                <div>
-                    <h2>{exercise.exercise_name}</h2>
+                <div className='ExerciseItem'>
+                    <div className='ExerciseItem___header'>
+                        <h2 className='ExerciseItem__name'>{exercise.exercise_name}</h2>
+                    </div>
                     <Section list className='MyExerciseSets'>
                             {error
                             ? <p className='red'>Whoops! There was an error</p>
                             : this.renderExerciseSets()}
-                    </Section>
-                    <span>Exercise Vol: # lbs</span>              
+                    </Section>             
                 </div>
             )            
         }
@@ -177,7 +177,8 @@ export default class Exercise extends Component {
                 type='button'
                 onClick={this.handleClickAddExerciseSet}
             >
-                Add Set
+                <img src={AddIcon} alt='Add exercise set icon' className='ExerciseSetItem__add-icon' />
+                Set
             </Button>
         )
     }
@@ -189,7 +190,7 @@ export default class Exercise extends Component {
                 type='button'
                 onClick={this.handleClickDeleteExercise}
             >
-                🗑
+                <img src={DeleteIcon} alt='Delete exercise icon' className='ExerciseItem__delete-icon' />
             </Button>
         )
     }
@@ -201,7 +202,7 @@ export default class Exercise extends Component {
                 type='button'
                 onClick={this.handleClickEditExerciseName}
             >
-                ✎
+                <img src={EditIcon} alt='Edit exercise name icon' className='ExerciseItem__edit-icon' />
             </Button>
         )
     }
@@ -213,7 +214,7 @@ export default class Exercise extends Component {
                 type='button'
                 onClick={this.handleSubmitExerciseName}
             >
-                ✔
+                <img src={SubmitIcon} alt='Submit exercise name icon' className='ExerciseItem__submit-icon' />
             </Button>
         )
     }

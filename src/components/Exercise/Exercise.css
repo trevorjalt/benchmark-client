@@ -1,4 +1,46 @@
+.ExerciseItem {
+    padding: 1vh 0 4vh 0;
+}
+
 .ExerciseItem___header {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.ExerciseItem__name {
+    color: #26547C;
+}
+
+.ExerciseItem__name-in-progress {
+    color: #26547C;
+    margin-right: 1vw;
+
+}
+
+.ExerciseItem__delete, .ExerciseItem__edit, .ExerciseItem__submit {
+    display: flex;
+    align-items: center;
+    margin: 5vh 1vw 5vh 0;
+
+}
+
+.ExerciseItem__delete-icon, .ExerciseItem__edit-icon, .ExerciseItem__submit-icon {
+    height: 3.5vh;
+}
+
+.ExerciseSetItem__buttons {
+    display: flex;
+    justify-content: center;
+    padding: 4vh 0 4vh 0;
+}
+
+.ExerciseSetItem__add {
+    display: flex;
+    align-items: center; 
+}
+
+.ExerciseSetItem__add-icon {
+    height: 3.5vh;
+    margin-right: 1vw;
 }

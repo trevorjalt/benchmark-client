@@ -186,9 +186,9 @@ export default class Workout extends Component {
                     <WorkoutDate workout={workout} /> 
                     <div className='MyExercises'>
                         {this.renderNewExercises()}
-                        <div className='error-message' role='alert'>
+                    </div>
+                    <div className='error-message' role='alert'>
                             {error && <p className='red'>{error}</p>}
-                        </div>
                     </div>
                     <form className='AddNewExerciseForm' onChange={this.onSelectExerciseChange}>
                             <label htmlFor='Exercise__select'>Select Exercise:</label>
@@ -258,7 +258,7 @@ export default class Workout extends Component {
                 onClick={this.handleClickAddExercise}
             >
                 <img src={AddExerciseIcon} alt='Add exercise icon' className='ExerciseItem__add-icon' />
-                Add Exercise
+                Exercise
             </Button>
         )
     }

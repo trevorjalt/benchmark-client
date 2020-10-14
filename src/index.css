@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.red {
+  color: #CA1551;
+  font-size: 2.5vh;
+  font-weight: bold;
+}

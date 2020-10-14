@@ -6,19 +6,10 @@ export function NiceDate({ date, format='do MMMM yyyy' }) {
   return formatDate(date, format)
 }
 
-export function Hyph() {
-  return <span className='Hyph'>{' - '}</span>
-}
-
 export function Button({ className, ...props }) {
   return <button className={['Button', className].join(' ')} {...props} />
 }
 
-export function Textarea({ className, ...props }) {
-  return (
-    <textarea className={['Textarea', className].join(' ')} {...props} />
-  )
-}
 
 export function Input({ className, ...props }) {
   return (
