@@ -5,7 +5,6 @@ import './index.css';
 import { WorkoutProvider } from './contexts/WorkoutContext'
 import App from './components/App/App';
 
-// import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -15,6 +14,3 @@ ReactDOM.render(
     </BrowserRouter>,
     document.getElementById('root')
 )
-
-
-// serviceWorker.unregister();

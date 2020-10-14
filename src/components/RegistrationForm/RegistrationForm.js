@@ -25,7 +25,6 @@ export default class RegistrationForm extends Component {
             username: username.value,
             user_password: user_password.value,
             email: email.value,
-            // nickname: nickname.value,
         })
             .then(user => {
                 username.value = ''

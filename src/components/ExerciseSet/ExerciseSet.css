@@ -19,14 +19,11 @@ input {
     justify-content: center;
     margin-top: .5vh;
     font-size: 2.1vh;
-    /* font-weight: bold; */
     align-items: center;
-
     justify-content: center;
 }
 
 .ExerciseSetItem__data {
-    /* color: #2FA7FB; */
     margin-left: 1vw;
     font-weight: bold;
     color: #EF2D70;
@@ -39,7 +36,6 @@ input {
 }
 
 .ExerciseSetItem__volume {
-    /* margin-right: 2vw; */
     width: 35vw;
     text-align: left
 }
@@ -85,9 +81,6 @@ input {
 }
 
 
-
-
-
 @media only screen and (min-width: 800px) {
     .ExerciseSetItem {
         font-size: 2.5vh;
@@ -99,7 +92,6 @@ input {
     }
     
     .ExerciseSetItem__volume {
-        /* margin-right: 2vw; */
         width: 25vw;
         text-align: left
     }
