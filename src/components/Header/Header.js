@@ -74,12 +74,12 @@ export default class Header extends Component {
     render() {
         return (
             <nav className='Header'>
-                <h1>
+                <span className='Header__text'>
                     <img src={Logo} alt='benchmark logo' className='logoIcon' />
                     <Link to='/' className='logo'>
                         benchMark
                     </Link>
-                </h1>                           
+                </span>                           
                 {TokenService.hasAuthToken()
                     ? this.renderLogoutLink()
                     : this.renderLoginLink()}                 

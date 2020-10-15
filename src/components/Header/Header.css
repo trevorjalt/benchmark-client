@@ -9,6 +9,13 @@
     text-decoration: none;
 }
 
+.Header__text {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 h1 {
     display: flex;
     align-items: center;
