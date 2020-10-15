@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+
 .Landing__image {
     width: 60vw;
     border-radius: 20px;
@@ -15,11 +17,13 @@
 .LandingPageTitle {
     display: flex;
     justify-content: center;
+    /* font-family: 'Shrikhand' */
 }
 
 .LandingPage__section-titles {
     color: #D11053;
     font-size: 3vh;
+    /* font-family: 'Shrikhand' */
 }
 
 .Benchmark__description {
@@ -38,18 +42,19 @@
 }
 
 .Benchmark__functionality {
-    color: #26547C;
+    color: #D11053;
     font-size: 2.5vh;
+    /* font-family: 'Shrikhand' */
 }
 
 .Benchmark__title {
     font-size: 5.5vh;
-    color: #2FA7FB;
+    color: #D11053;
 }
 
 .Benchmark__tagline {
     font-size: 3.5vh;
-    margin: 0 5vw 7vh 5vw;
+    margin: 0 5vw 8vh 5vw;
 }
 
 .Description__container {
