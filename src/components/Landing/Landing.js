@@ -20,7 +20,7 @@ export default class Landing extends Component {
                     <img src={Notebook} alt='notebook and pen' className='Landing__image' />
                     <div className='Description__container'>
                         <div className='Benchmark__description'>
-                            <p>Here at benchmark we are strength-training enthusiasts.  We understand the amount of <em>stuff</em> you carry at the gym as you work to break your limits.  So we're here to help.  benchMark is an easy solution allowing you to leave that pen and paper at home, and quickly log and track your workout progress in the same device that plays those tunes to keep you pumped up.</p>
+                            <p>Here at benchmark we are strength-training enthusiasts.  We understand the amount of stuff you carry at the gym as you work to break your limits.  So we're here to help.  benchMark is an easy solution allowing you to leave that pen and paper at home, and quickly log and track your workout progress in the same device that plays those tunes to keep you pumped up.</p>
                         </div>
                     </div>
                 </section>

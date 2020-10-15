@@ -28,14 +28,14 @@ export default class Header extends Component {
                     to='/myworkouts'
                     className='navItem'
                 >
-                    <img src={MyWorkoutsIcon} alt='My workouts icon' className='navIcon'></img>
+                    <img src={MyWorkoutsIcon} alt='My workouts link logo' className='navIcon'></img>
                     <p className='navItem__text'>myWorkouts</p>
                 </Link>
                 <Link
                     to='/newworkout'
                     className='navItem'
                 >
-                    <img src={NewWorkoutIcon} alt='New workout icon' className='navIcon'></img>
+                    <img src={NewWorkoutIcon} alt='New workout link logo' className='navIcon'></img>
                     <p className='navItem__text'>newWorkout</p>
                 </Link>
                 <Link
@@ -43,7 +43,7 @@ export default class Header extends Component {
                     className='navItem'
                     onClick={this.handleLogoutClick}
                 >
-                    <img src={LogoutIcon} alt='Logout icon' className='navIcon'></img>
+                    <img src={LogoutIcon} alt='Logout link logo' className='navIcon'></img>
                     <p className='navItem__text2'>Logout</p>
                 </Link>
             </div>
@@ -57,14 +57,14 @@ export default class Header extends Component {
                     to='/register'
                     className='navItem'
                 >
-                    <img src={RegisterIcon} alt='Register icon' className='navIcon'></img>
+                    <img src={RegisterIcon} alt='Register link logo' className='navIcon'></img>
                     <p className='navItem__text'>Register</p>
                 </Link>
                 <Link
                     to='/login'
                     className='navItem'
                 >
-                    <img src={LoginIcon} alt='Login icon' className='navIcon'></img>
+                    <img src={LoginIcon} alt='Login link logo' className='navIcon'></img>
                     <p className='navItem__text2'>Login</p>
                 </Link>
             </div>

@@ -59,59 +59,70 @@ export default class RegistrationForm extends Component {
                     <div role='alert'>
                         {error && <p className='red'>{error}</p>}
                     </div>
-                    <div className='username'>
-                        <label htmlFor="RegistrationForm__username">
+                    <div className='username' id='chooseUsername'>
+                        <label htmlFor='RegistrationForm__username'>
                             Username <Required />
                         </label>
                         <Input
                             name='username'
                             type='text'
                             required
-                            id='RegistrationForm_username'>
+                            id='RegistrationForm__username'
+                            aria-required='true'
+                            aria-labelledby='chooseUsername'
+                        >
                         </Input>
                     </div>
-                    <div className='email'>
-                        <label htmlFor="RegistrationForm__email">
+                    <div className='email' id='userEmail'>
+                        <label htmlFor='RegistrationForm__email'>
                             Email <Required />
                         </label>
                         <Input
                             name='email'
                             type='email'
                             required
-                            id='RegistrationForm_email'>
+                            id='RegistrationForm__email'
+                            aria-required='true'
+                            aria-labelledby='userEmail'
+                        >
                         </Input>
                     </div>
-                    <div className='user_password'>
-                        <label htmlFor="RegistrationForm__password">
+                    <div className='user_password' id='choosePassword'>
+                        <label htmlFor='RegistrationForm__password'>
                             Password <Required />
                         </label>
                         <Input
                             name='user_password'
                             type='password'
                             required
-                            id='RegistrationForm__password'>
+                            id='RegistrationForm__password'
+                            aria-required='true'
+                            aria-labelledby='choosePassword'
+                        >
                         </Input>
                     </div>
-                    <div className='user_password_match'>
-                        <label htmlFor="RegistrationForm__password_match">
+                    <div className='user_password_match' id='passwordMatch'>
+                        <label htmlFor='RegistrationForm__password_match'>
                             Re-Enter Password <Required />
                         </label>
                         <Input
                             name='user_password_match'
                             type='password'
                             required
-                            id='RegistrationForm__password_match'>
+                            id='RegistrationForm__password_match'
+                            aria-required='true'
+                            aria-labelledby='passwordMatch'
+                        >
                         </Input>
                     </div>
                     <div className='Register__button'>
                         <Button type='submit' className='RegisterSubmit'>
-                        <img src={RegisterIcon} alt='Register' className='Register__icon' />
+                        <img src={RegisterIcon} alt='Register button logo' className='Register__icon' />
                             Register
                         </Button>
                     </div>
                 </form>
             </div>
-
         )
     }
 }

@@ -12,7 +12,6 @@
     display: flex;
     align-items: center;
     margin: 4vh 0 4vh 0;
-
 }
 
 .RegistrationForm {
@@ -29,7 +28,6 @@
 .DemoContainer {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
 }
 
 .DemoInformation {
@@ -47,6 +45,7 @@
 .blue {
     color: #26547C;
 }
+
 
 @media only screen and (min-width: 800px) {
     .DemoInformation {

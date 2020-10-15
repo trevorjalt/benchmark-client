@@ -98,6 +98,7 @@ export default class Exercise extends Component {
         return exerciseSets.map(exerciseSet =>
             <ExerciseSet
                 key={exerciseSet.id}
+                id={exerciseSet.id}
                 exerciseSet={exerciseSet}
                 onRepetitionChange={this.props.onRepetitionChange}
                 onWeightChange={this.props.onWeightChange}
@@ -118,7 +119,12 @@ export default class Exercise extends Component {
                     <div className='ExerciseNameUpdate'>
                         <form className='EditExerciseNameForm' onChange={this.onSelectExerciseNameChange}>
                             <label htmlFor='ExerciseName__select'></label>
-                            <select name='ExerciseName__select' id='ExerciseName__select' className='ExerciseName__select'>
+                            <select 
+                                name='ExerciseName__select' 
+                                id='ExerciseName__select' 
+                                className='ExerciseName__select'
+                                aria-label='ExerciseName__select'
+                            >
                                 <option value=''>Select Exercise</option>
                                 <option value='Ab Pulldown'>Ab Pulldown</option>                           
                                 <option value='Bench'>Bench</option>
@@ -187,7 +193,7 @@ export default class Exercise extends Component {
                 type='button'
                 onClick={this.handleClickAddExerciseSet}
             >
-                <img src={AddIcon} alt='Add exercise set icon' className='ExerciseSetItem__add-icon' />
+                <img src={AddIcon} alt='Add exercise set button' className='ExerciseSetItem__add-icon' />
                 Set
             </Button>
         )
@@ -200,7 +206,7 @@ export default class Exercise extends Component {
                 type='button'
                 onClick={this.handleClickDeleteExercise}
             >
-                <img src={DeleteIcon} alt='Delete exercise icon' className='ExerciseItem__delete-icon' />
+                <img src={DeleteIcon} alt='Delete exercise button' className='ExerciseItem__delete-icon' />
             </Button>
         )
     }
@@ -212,7 +218,7 @@ export default class Exercise extends Component {
                 type='button'
                 onClick={this.handleClickEditExerciseName}
             >
-                <img src={EditIcon} alt='Edit exercise name icon' className='ExerciseItem__edit-icon' />
+                <img src={EditIcon} alt='Edit exercise name button' className='ExerciseItem__edit-icon' />
             </Button>
         )
     }
@@ -224,7 +230,7 @@ export default class Exercise extends Component {
                 type='button'
                 onClick={this.handleSubmitExerciseName}
             >
-                <img src={SubmitIcon} alt='Submit exercise name icon' className='ExerciseItem__submit-icon' />
+                <img src={SubmitIcon} alt='Submit exercise name button' className='ExerciseItem__submit-icon' />
             </Button>
         )
     }

@@ -1,8 +1,3 @@
-/*
-  Idle Service
-  this service manages when a user has gone idle (not interacting with the page).
-*/
-
 let _timeoutId
 let _idleCallback = null
 let _notIdleEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart' ]

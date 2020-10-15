@@ -191,8 +191,13 @@ export default class Workout extends Component {
                             {error && <p className='red'>{error}</p>}
                     </div>
                     <form className='AddNewExerciseForm' onChange={this.onSelectExerciseChange}>
-                        <label htmlFor='Exercise__select' className='Exercise__select-label'>Select Exercise</label>
-                        <select name='Exercise__select' id='Exercise__select' className='Exercise__select'>
+                        <label htmlFor='Exercise__select'><span className='Exercise__select-label'>Select Exercise</span></label>
+                        <select 
+                            name='Exercise__select' 
+                            id='Exercise__select' 
+                            className='Exercise__select'
+                            aria-label='Exercise__select'
+                        >
                             <option value=''>Select Exercise</option>
                             <option value='Ab Pulldown'>Ab Pulldown</option>                           
                             <option value='Bench'>Bench</option>
@@ -263,7 +268,7 @@ export default class Workout extends Component {
                 type='button'
                 onClick={this.handleClickAddExercise}
             >
-                <img src={AddExerciseIcon} alt='Add exercise icon' className='ExerciseItem__add-icon' />
+                <img src={AddExerciseIcon} alt='Add exercise button' className='ExerciseItem__add-icon' />
                 Exercise
             </Button>
         )
@@ -276,7 +281,7 @@ export default class Workout extends Component {
                 type='button'
                 onClick={this.handleClickComplete}
             >
-                <img src={CompleteIcon} alt='Complete workout icon' className='WorkoutItem__complete-icon' />
+                <img src={CompleteIcon} alt='Complete workout button' className='WorkoutItem__complete-icon' />
                 Complete
             </Button>
         )
@@ -289,7 +294,7 @@ export default class Workout extends Component {
                 type='button'
                 onClick={this.handleClickContinue}
             >               
-                <img src={ContinueIcon} alt='Continue workout icon' className='WorkoutItem__continue-icon' />
+                <img src={ContinueIcon} alt='Continue workout button' className='WorkoutItem__continue-icon' />
                 Continue               
             </Button>
         )
@@ -302,7 +307,7 @@ export default class Workout extends Component {
                 type='button'
                 onClick={this.handleClickDelete}
             >
-                <img src={DeleteIcon} alt='Delete workout icon' className='WorkoutItem__delete-icon' />
+                <img src={DeleteIcon} alt='Delete workout button' className='WorkoutItem__delete-icon' />
                 Delete
             </Button>
         )

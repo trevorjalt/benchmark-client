@@ -7,5 +7,8 @@
     margin-top: 4vh;
     position: absolute; 
     left: 0 ; right: 0; bottom: 0;
+}
+
+.footer-copy {
     font-size: 2vh;
 }

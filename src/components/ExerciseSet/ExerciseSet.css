@@ -8,7 +8,7 @@ input {
     width: 15vw;
 }
 
-.ExerciseSetLabel {
+.ExerciseSetWeightLabel, .ExerciseSetRepetitionLabel {
   margin-right: 1vw;
   color: #D11053;
   font-weight: bold;
@@ -27,7 +27,6 @@ input {
     margin-left: 1vw;
     font-weight: bold;
     color: #D11053;
-
 }
 
 .ExerciseSetItem__repetition {
@@ -55,7 +54,6 @@ input {
   display: flex;
   align-items: center;
   margin: 2vh 1vw 2vh 0;
-
 }
 
 .ExerciseSetItem__delete-icon, .ExerciseSetItem__edit-icon, .ExerciseSetItem__submit-icon {

@@ -105,42 +105,34 @@ export default class ExerciseSet extends Component {
                     <div className='error-message' role='alert'>
                         {error && <p className='red'>{error}</p>}
                     </div>
-                    <form className='ExerciseSetItemUpdateForm'>
                     <div className='ExerciseSetItem'>
                         <div className='set_weight'>
-                            <label htmlFor='SetItem__weight' className='ExerciseSetLabel'>
+                            <label htmlFor={`weight_${this.props.id}`} className='ExerciseSetWeightLabel'>
                                 Weight
                             </label>
                             <input
                                 required
-                                name='set_weight'
-                                id='SetItem__weight'
+                                name='setItem__weight'
                                 type='number'
-                                // aria-label='Weight'
-                                // aria-required='true'
-                                aria-describedby='weightError'
-                                // // aria-invalid='true'
+                                id={`weight_${this.props.id}`}
+                                aria-required='true'
+                                aria-labelledby={`weight_${this.props.id}`}
                                 defaultValue={exerciseSet.set_weight}
                                 onInput={this.onWeightInputChange.bind(this)}
                             />
                             <span className='ExerciseSetPounds'>lbs</span>
-                            {/* <div
-                                className='errorMessage'
-                                id='weightError'
-                                aria-live="assertive"
-                                >
-                                Please enter a valid number for your set weight
-                            </div> */}
                         </div>
-                        <div className='repetition'>
-                            <label htmlFor='SetItem__repetition' className='ExerciseSetLabel'>
+                        <div className='repetition' >
+                            <label htmlFor={`repetition_${this.props.id}`} className='ExerciseSetRepetitionLabel'>
                                 Reps
                             </label>
                             <input
                                 required
                                 name='set_repetition'
+                                id={`repetition_${this.props.id}`}
                                 type='number'
-                                id='SetItem__repetition'
+                                aria-required='true'
+                                aria-labelledby={`repetition_${this.props.id}`}
                                 defaultValue={exerciseSet.set_repetition}
                                 onInput={this.onRepetitionInputChange.bind(this)}
                                 >
@@ -149,7 +141,6 @@ export default class ExerciseSet extends Component {
                         {this.renderSubmitExerciseSetButton()}
                         {this.renderDeleteExerciseSetButton()}
                     </div>
-                    </form>
                 </div>
             )
         } else {
@@ -176,7 +167,7 @@ export default class ExerciseSet extends Component {
                 type='button'
                 onClick={this.handleClickDeleteExerciseSet}
             >
-                <img src={DeleteIcon} alt='Delete exercise set icon' className='ExerciseSetItem__delete-icon' />
+                <img src={DeleteIcon} alt='Delete exercise set button' className='ExerciseSetItem__delete-icon' />
             </Button>
         )
     }
@@ -188,7 +179,7 @@ export default class ExerciseSet extends Component {
                 type='button'
                 onClick={this.handleClickEditExerciseSet}
             >
-                <img src={EditIcon} alt='Edit exercise set icon' className='ExerciseSetItem__edit-icon' />
+                <img src={EditIcon} alt='Edit exercise set button' className='ExerciseSetItem__edit-icon' />
             </Button>
         )
     }
@@ -200,7 +191,7 @@ export default class ExerciseSet extends Component {
                 type='submit'
                 onClick={this.handleClickSubmitExerciseSet}
             >                
-                <img src={SubmitIcon} alt='Submit exercise set icon' className='ExerciseSetItem__submit-icon' />
+                <img src={SubmitIcon} alt='Submit exercise set button' className='ExerciseSetItem__submit-icon' />
             </Button>
         )
     }

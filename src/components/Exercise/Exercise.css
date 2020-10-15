@@ -15,14 +15,12 @@
 .ExerciseItem__name-in-progress {
     color: #26547C;
     margin-right: 1vw;
-
 }
 
 .ExerciseItem__delete, .ExerciseItem__edit, .ExerciseItem__submit {
     display: flex;
     align-items: center;
     margin: 5vh 1vw 5vh 0;
-
 }
 
 .ExerciseItem__delete-icon, .ExerciseItem__edit-icon, .ExerciseItem__submit-icon {
