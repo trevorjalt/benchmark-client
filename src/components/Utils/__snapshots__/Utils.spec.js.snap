@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Utils Component returns a button 1`] = `
+<button
+  className="Button LimitBreaker"
+/>
+`;
+
+exports[`Utils Component returns a nice date 1`] = `"14th October 2020"`;
+
+exports[`Utils Component returns a section 1`] = `
+<section
+  className="Section LimitBreaker"
+/>
+`;
+
+exports[`Utils Component returns an input field 1`] = `
+<input
+  className="Input LimitBreaker"
+/>
+`;
+
+exports[`Utils Component returns required 1`] = `
+<span
+  className="Required LimitBreaker"
+>
+  *
+</span>
+`;

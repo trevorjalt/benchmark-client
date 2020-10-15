@@ -1,8 +1,69 @@
-img {
-    height: 45vh;
+.Landing__image {
+    width: 60vw;
+    border-radius: 20px;
+    margin: 3vh 0 1vh 0;
+    border: .4vw solid;
+    border-color: #F78F38;
+}
+
+.Landing__image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .LandingPageTitle {
     display: flex;
     justify-content: center;
+}
+
+.LandingPage__section-titles {
+    color: #D11053;
+    font-size: 3vh;
+}
+
+.Benchmark__description {
+    background-color: #FEEFDD;
+    width: 75vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin: 4vh 0 4vh 0;
+    padding: 3vh;
+    font-size: 2.2vh;
+    text-align: left;
+    line-height: 3.2vh;
+
+}
+
+.Benchmark__functionality {
+    color: #26547C;
+    font-size: 2.5vh;
+}
+
+.Benchmark__title {
+    font-size: 5.5vh;
+    color: #2FA7FB;
+}
+
+.Benchmark__tagline {
+    font-size: 3.5vh;
+    margin: 0 5vw 7vh 5vw;
+}
+
+.Description__container {
+    display: flex;
+    justify-content: center;
+
+}
+
+@media only screen and (min-width: 800px) {
+    .Landing__image {
+        width: 30vw;
+        border-radius: 20px;
+        margin: 3vh 0 1vh 0;
+        border: .4vw solid;
+        border-color: #F78F38;
+    }
 }

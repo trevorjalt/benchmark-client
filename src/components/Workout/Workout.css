@@ -14,6 +14,10 @@
 
 }
 
+.Exercise__select-label {
+    display: none;
+}
+
 .MyExercises {
     text-align: center;
     background-color: #FEEFDD;
@@ -22,7 +26,7 @@
 
 .Workout__item {
     padding: 4vh 0 4vh 0;
-    background: linear-gradient(to right, #2FA7FB,#41C5FD 3%,#5BE2F8,#90ECF2,#C5F5F1 35%, #DAFDFD, #C5F5F1 65%, #90ECF2, #5BE2F8, #41C5FD 97%, #2FA7FB);
+    background: linear-gradient(to right, #2FA7FB,#41c5fd 3%,#5BE2F8,#90ECF2,#C5F5F1 35%, #DAFDFD, #C5F5F1 65%, #90ECF2, #5BE2F8, #41C5FD 97%, #2FA7FB);
     margin-bottom: 4vh;
     border-radius: 20px;
 }

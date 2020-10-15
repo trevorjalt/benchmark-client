@@ -24,10 +24,9 @@ export function Required({ className, ...props }) {
     )
 }
 
-export function Section({ className, list, ...props }) {
+export function Section({ className, ...props }) {
     const classes = [
         'Section',
-        list && 'Section--list',
         className,
     ].filter(Boolean).join(' ')
     return (

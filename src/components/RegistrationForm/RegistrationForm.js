@@ -43,7 +43,7 @@ export default class RegistrationForm extends Component {
         const { error } = this.state
         return (
             <div>
-                <h3>Set your benchMark today</h3>
+                <h3 className='Registration__prompt'>Set your benchMark today</h3>
                 <form 
                     className='RegistrationForm'
                     onSubmit={this.handleSubmit}

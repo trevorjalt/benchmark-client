@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Landing from '../../components/Landing/Landing' 
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm'
-import { Section } from '../../components/Utils/Utils'
+
 
 export default class LandingPage extends Component {
     static defaultProps = {
@@ -16,12 +16,12 @@ export default class LandingPage extends Component {
     }
     render() {
         return (
-            <Section className='LandingPage'>
+            <section className='LandingPage'>
                 <Landing />
                 <RegistrationForm 
                     onRegistrationSuccess={this.handleRegistrationSuccess}
                 />
-            </Section>
+            </section>
         )
     }
 }
