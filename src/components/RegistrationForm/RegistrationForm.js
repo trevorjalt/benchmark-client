@@ -44,6 +44,14 @@ export default class RegistrationForm extends Component {
         return (
             <div>
                 <h3 className='Registration__prompt'>Set your benchMark today</h3>
+                <div className='DemoContainer'>
+                    <div className='DemoInformation'>
+                        <h4 className='blue'>Want to see it in action before signing up?</h4>
+                        <p>Head over to the login page and use the following to sign in:</p>
+                        <p><span className='bold'>Username:</span> <span className='blue'>limitbreaker</span></p>
+                        <p><span className='bold'>Password:</span> <span className='blue'>benchMark1!</span></p>
+                    </div>
+                </div>
                 <form 
                     className='RegistrationForm'
                     onSubmit={this.handleSubmit}

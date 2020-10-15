@@ -25,3 +25,31 @@
     color: #2FA7FB;
     font-size: 4vh;
 }
+
+.DemoContainer {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.DemoInformation {
+    background-color: #DAFDFD;
+    width: 80vw;
+    padding: 3vh;
+    border-radius: 20px;
+    margin: 1vh 0 6vh 0;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.blue {
+    color: #26547C;
+}
+
+@media only screen and (min-width: 800px) {
+    .DemoInformation {
+        width: 40vw;
+    }
+}

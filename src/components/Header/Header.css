@@ -46,7 +46,6 @@ h1 {
 }
 
 
-
 @media only screen and (min-width: 800px) {
     .Header__not-logged-in, .Header__logged-in {
         display: flex;
