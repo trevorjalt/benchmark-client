@@ -1,3 +1,9 @@
 .LoginTitle {
     font-size: 3.5vh;
 }
+
+.LoginTitleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

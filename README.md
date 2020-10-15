@@ -1,68 +1,148 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# benchMark Client
 
-## Available Scripts
+Strength-training tracking designed with the user in mind.  Create, update, and review workouts in real time - with the user remaining in the driver seat for the control of their data.
 
-In the project directory, you can run:
+`benchMark Client` is the frontend for `benchMark`.  To see `benchMark` in action, check out LINK-PLACEHOLDER.
 
-### `npm start`
+The `benchMark` backend can be found at: [benchMark-server](https://github.com/trevorjalt/benchmark-server/ "benchMark Api")
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ready to break some limits?
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Here at `benchmark` we are strength-training enthusiasts. We understand the amount of stuff you carry at the gym as you work to break your limits. So we're here to help. `benchMark` is an easy solution allowing you to leave that pen and paper at home, and quickly log and track your workout progress in the same device that plays those tunes to keep you pumped up.
 
-### `npm test`
+## table of contents.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* [the tech](#the-tech)
+  * [backend](#backend)
+  * [production](#production)
+* [setup](#setup)
+  * [requirements](#requirements)
+  * [local setup](#local-setup)
+* [quick start](#quick-start-scripts)
 
-### `npm run build`
+## a quick look at our lewk.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![benchMark app overview](/src/components/App/images/benchmark-app-full-page-view.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## the tech.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### backend.
 
-### `npm run eject`
+* Node and Express
+  * Authentication via JWT
+  * RESTful Api
+* Testing
+  * Supertest (integration)
+  * Mocha and Chai (unit)
+* Database
+  * Postgres
+  * Knex.js - SQL wrapper
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### production.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Deployed via Heroku
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## setup.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### requirements.
+* Postgres v8.3.3
+* Node v12.18.3
 
-## Learn More
+### local setup.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Clone this repository to your local machine 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+````
+git clone https://github.com/trevorjalt/benchmark-server benchmark-server
+````
 
-### Code Splitting
+Change directory into the cloned repository
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+````
+cd benchmark-server
+````
 
-### Analyzing the Bundle Size
+Make a fresh start of the git history for this project
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```` 
+rm -rf .git && git init
+````
 
-### Making a Progressive Web App
+Install the node dependencies 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+````
+npm install
+````
 
-### Advanced Configuration
+Create the development user
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+````
+createuser -Pw --interactive 
+````
 
-### Deployment
+Type `kakarot` for the name of the `role` to add
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Select `y` when asked if the user should be a super user
 
-### `npm run build` fails to minify
+Press `return` (enter) for no password
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Create the development databases
+
+````
+createdb -U kakarot -d benchmark && createdb -U kakarot -d benchmark-test
+````
+
+Create a `.env` file in the project root, and include the following:
+
+````
+NODE_ENV=development
+PORT=8000
+DB_URL=postgresql://kakarot@localhost/benchmark
+TEST_DB_URL=postgresql://kakarot@localhost/benchmark-test
+````
+
+Start the Postgres server
+
+````
+pg_ctl start
+````
+
+Run the migrations for the development database
+
+````
+npm run migrate
+````
+
+Run the migrations for the development test database
+
+````
+npm run migrate:test
+````
+
+Seed the development database
+
+````
+psql -U kakarot -d benchmark -f ./seeds/seed.benchmark_tables.sql
+````
+
+## quick start scripts.
+
+Run the benchmark tests
+
+````
+npm t
+````
+
+Start the application
+
+````
+npm start
+````
+
+Start nodemon for the application 
+
+````
+npm run dev
+````
+
+## have fun!
