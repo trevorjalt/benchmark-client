@@ -5,103 +5,134 @@ exports[`Landing Component renders without crashing 1`] = `
   <div
     className="LandingPageTitle"
   >
-    <h1>
-      benchmark
+    <h1
+      className="Benchmark__title"
+    >
+      benchMark
     </h1>
   </div>
-  <h2>
-    A sensible way to track your strength-training progress.
-  </h2>
-  <section>
-    <h3>
-      Ditch your pen and paper
-    </h3>
-    <img
-      alt="goku"
-      src="goku.png"
-    />
-    <p>
-      Here at benchmark we are strength-training enthusiasts.  We understand the amount of 
-      <em>
-        stuff
-      </em>
-       you carry at the gym as you work to break your limits.  So we're here to help.  benchMark is an easy solution allowing you to leave that pen and paper at home, and quickly log and track your workout progress in the same device that plays those tunes to keep you pumped up.
-    </p>
-  </section>
-  <section>
-    <h3>
-      Keep your focus where it belongs
-    </h3>
-    <p>
-      We're all about no muss, no fuss.  benchMark keeps it simple, making it easy for you to:
-    </p>
-    <img
-      alt="goku"
-      src="goku2.png"
-    />
-    <p>
-      Create custom workouts
-    </p>
-    <img
-      alt="goku"
-      src="goku3.png"
-    />
-    <p>
-      Quickly analyze your progress.  You input numbers, you receive numbers.  No graphs to interpret.  Sensible.
-    </p>
-  </section>
-</div>
-`;
-
-exports[`Workout Component renders without crashing 1`] = `
-<div>
-  <div
-    className="LandingPageTitle"
+  <h2
+    className="Benchmark__tagline"
   >
-    <h1>
-      benchmark
-    </h1>
-  </div>
-  <h2>
-    A sensible way to track your strength-training progress.
+    A sensible way to track your strength-training progress
   </h2>
   <section>
-    <h3>
+    <h3
+      className="LandingPage__section-titles"
+    >
       Ditch your pen and paper
     </h3>
     <img
-      alt="goku"
-      src="goku.png"
+      alt="notebook and pen"
+      className="Landing__image"
+      src="notebook-and-pen.png"
     />
-    <p>
-      Here at benchmark we are strength-training enthusiasts.  We understand the amount of 
-      <em>
-        stuff
-      </em>
-       you carry at the gym as you work to break your limits.  So we're here to help.  benchMark is an easy solution allowing you to leave that pen and paper at home, and quickly log and track your workout progress in the same device that plays those tunes to keep you pumped up.
-    </p>
+    <div
+      className="Description__container"
+    >
+      <div
+        className="Benchmark__description"
+      >
+        <p>
+          Here at benchmark we are strength-training enthusiasts.  We understand the amount of stuff you carry at the gym as you work to break your limits.  So we're here to help.  benchMark is an easy solution allowing you to leave that pen and paper at home, and quickly log and track your workout progress in the same device that plays those tunes to keep you pumped up.
+        </p>
+      </div>
+    </div>
   </section>
   <section>
-    <h3>
+    <h3
+      className="LandingPage__section-titles"
+    >
       Keep your focus where it belongs
     </h3>
-    <p>
-      We're all about no muss, no fuss.  benchMark keeps it simple, making it easy for you to:
-    </p>
-    <img
-      alt="goku"
-      src="goku2.png"
-    />
-    <p>
+    <div
+      className="Description__container"
+    >
+      <div
+        className="Benchmark__description"
+      >
+        <p>
+          We're all about no muss, no fuss.  benchMark keeps it simple, making it easy for you to:
+        </p>
+      </div>
+    </div>
+    <h4
+      className="Benchmark__functionality"
+    >
       Create custom workouts
-    </p>
+    </h4>
+    <div
+      className="Landing__image-container"
+    >
+      <img
+        alt="New workout screenshot"
+        className="Landing__image"
+        src="new-workout-screenshot.png"
+      />
+      <img
+        alt="New workout input screenshot"
+        className="Landing__image"
+        src="new-workout-input-screenshot.png"
+      />
+    </div>
+    <div
+      className="Description__container"
+    >
+      <div
+        className="Benchmark__description"
+      >
+        <p>
+          benchMark gives you control over your experience.  Add exercises.  Add sets.  Complete them as you go, or complete them all at once.  Make a mistake?  No worries, you can update as you go.  benchMark is designed to let you focus on the task at hand: breaking your limits.
+        </p>
+      </div>
+    </div>
+    <h4
+      className="Benchmark__functionality"
+    >
+      Quickly review your workout history
+    </h4>
     <img
-      alt="goku"
-      src="goku3.png"
+      alt="myWorkouts collapsed view screenshot"
+      className="Landing__image"
+      src="myworkouts-collapsed-view-screenshot.png"
     />
-    <p>
-      Quickly analyze your progress.  You input numbers, you receive numbers.  No graphs to interpret.  Sensible.
-    </p>
+    <div
+      className="Description__container"
+    >
+      <div
+        className="Benchmark__description"
+      >
+        <p>
+          benchMark displays a list of all your completed workouts.  Want a more detailed view?  Give it a double-tap to see your benchMark in its full glory.
+        </p>
+      </div>
+    </div>
+    <img
+      alt="myWorkouts expanded view screenshot"
+      className="Landing__image"
+      src="myworkouts-expanded-view-screenshot.png"
+    />
+    <h4
+      className="Benchmark__functionality"
+    >
+      Pick up where you left off
+    </h4>
+    <img
+      alt="myWorkouts continue button screenshot"
+      className="Landing__image"
+      src="continue-button-screenshot.png"
+    />
+    <div
+      className="Description__container"
+    >
+      <div
+        className="Benchmark__description"
+      >
+        <p>
+          Accidently close the app in the middle of a workout?  We got you.  Navigate over to the myWorkouts page, give your most recent workout a double-tap, and click on that 'Continue' button.  If you submit your set information as you complete it, it'll be saved, making it easy for you to quickly pick up right where you left off.
+        </p>
+      </div>
+    </div>
   </section>
 </div>
 `;

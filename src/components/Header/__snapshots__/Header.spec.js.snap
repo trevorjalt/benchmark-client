@@ -4,7 +4,9 @@ exports[`Header Component renders without crashing 1`] = `
 <nav
   className="Header"
 >
-  <h1>
+  <span
+    className="Header__text"
+  >
     <img
       alt="benchmark logo"
       className="logoIcon"
@@ -16,7 +18,7 @@ exports[`Header Component renders without crashing 1`] = `
     >
       benchMark
     </Link>
-  </h1>
+  </span>
   <div
     className="Header__not-logged-in"
   >
@@ -25,7 +27,7 @@ exports[`Header Component renders without crashing 1`] = `
       to="/register"
     >
       <img
-        alt="Register icon"
+        alt="Register link logo"
         className="navIcon"
         src="register-icon.png"
       />
@@ -40,7 +42,7 @@ exports[`Header Component renders without crashing 1`] = `
       to="/login"
     >
       <img
-        alt="Login icon"
+        alt="Login link logo"
         className="navIcon"
         src="login-icon.png"
       />

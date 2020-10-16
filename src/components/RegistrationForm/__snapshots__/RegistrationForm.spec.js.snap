@@ -2,9 +2,53 @@
 
 exports[`RegistrationForm Component renders without crashing 1`] = `
 <div>
-  <h3>
+  <h3
+    className="Registration__prompt"
+  >
     Set your benchMark today
   </h3>
+  <div
+    className="DemoContainer"
+  >
+    <div
+      className="DemoInformation"
+    >
+      <h4
+        className="blue"
+      >
+        Want to see it in action before signing up?
+      </h4>
+      <p>
+        Head over to the login page and use the following to sign in:
+      </p>
+      <p>
+        <span
+          className="bold"
+        >
+          Username:
+        </span>
+         
+        <span
+          className="blue"
+        >
+          limitbreaker
+        </span>
+      </p>
+      <p>
+        <span
+          className="bold"
+        >
+          Password:
+        </span>
+         
+        <span
+          className="blue"
+        >
+          benchMark1!
+        </span>
+      </p>
+    </div>
+  </div>
   <form
     className="RegistrationForm"
     onSubmit={[Function]}
@@ -14,6 +58,7 @@ exports[`RegistrationForm Component renders without crashing 1`] = `
     />
     <div
       className="username"
+      id="chooseUsername"
     >
       <label
         htmlFor="RegistrationForm__username"
@@ -22,7 +67,9 @@ exports[`RegistrationForm Component renders without crashing 1`] = `
         <Required />
       </label>
       <Input
-        id="RegistrationForm_username"
+        aria-labelledby="chooseUsername"
+        aria-required="true"
+        id="RegistrationForm__username"
         name="username"
         required={true}
         type="text"
@@ -30,6 +77,7 @@ exports[`RegistrationForm Component renders without crashing 1`] = `
     </div>
     <div
       className="email"
+      id="userEmail"
     >
       <label
         htmlFor="RegistrationForm__email"
@@ -38,7 +86,9 @@ exports[`RegistrationForm Component renders without crashing 1`] = `
         <Required />
       </label>
       <Input
-        id="RegistrationForm_email"
+        aria-labelledby="userEmail"
+        aria-required="true"
+        id="RegistrationForm__email"
         name="email"
         required={true}
         type="email"
@@ -46,6 +96,7 @@ exports[`RegistrationForm Component renders without crashing 1`] = `
     </div>
     <div
       className="user_password"
+      id="choosePassword"
     >
       <label
         htmlFor="RegistrationForm__password"
@@ -54,6 +105,8 @@ exports[`RegistrationForm Component renders without crashing 1`] = `
         <Required />
       </label>
       <Input
+        aria-labelledby="choosePassword"
+        aria-required="true"
         id="RegistrationForm__password"
         name="user_password"
         required={true}
@@ -62,6 +115,7 @@ exports[`RegistrationForm Component renders without crashing 1`] = `
     </div>
     <div
       className="user_password_match"
+      id="passwordMatch"
     >
       <label
         htmlFor="RegistrationForm__password_match"
@@ -70,6 +124,8 @@ exports[`RegistrationForm Component renders without crashing 1`] = `
         <Required />
       </label>
       <Input
+        aria-labelledby="passwordMatch"
+        aria-required="true"
         id="RegistrationForm__password_match"
         name="user_password_match"
         required={true}
@@ -84,7 +140,7 @@ exports[`RegistrationForm Component renders without crashing 1`] = `
         type="submit"
       >
         <img
-          alt="Register"
+          alt="Register button logo"
           className="Register__icon"
           src="register-icon.png"
         />

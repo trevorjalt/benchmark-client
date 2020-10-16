@@ -4,10 +4,10 @@ exports[`Footer Component renders without crashing 1`] = `
 <div
   className="Footer"
 >
-  <h4
+  <h2
     className="footer-copy"
   >
     © Copyright Trevor J Alt. All Rights Reserved.
-  </h4>
+  </h2>
 </div>
 `;

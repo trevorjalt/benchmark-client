@@ -10,6 +10,7 @@ exports[`LoginForm Component renders without crashing 1`] = `
   />
   <div
     className="username"
+    id="username"
   >
     <label
       htmlFor="LoginForm__username"
@@ -17,6 +18,8 @@ exports[`LoginForm Component renders without crashing 1`] = `
       Username
     </label>
     <Input
+      aria-labelledby="username"
+      aria-required="true"
       id="LoginForm__username"
       name="username"
       required={true}
@@ -24,6 +27,7 @@ exports[`LoginForm Component renders without crashing 1`] = `
   </div>
   <div
     className="user_password"
+    id="password"
   >
     <label
       htmlFor="LoginForm__password"
@@ -31,6 +35,8 @@ exports[`LoginForm Component renders without crashing 1`] = `
       Password
     </label>
     <Input
+      aria-labelledby="password"
+      aria-required="true"
       id="LoginForm__password"
       name="user_password"
       required={true}
@@ -45,7 +51,7 @@ exports[`LoginForm Component renders without crashing 1`] = `
       type="submit"
     >
       <img
-        alt="Login"
+        alt="Login Button logo"
         className="Login__icon"
         src="login-icon.png"
       />
