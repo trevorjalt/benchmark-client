@@ -39,7 +39,7 @@ Here at `benchmark` we are strength-training enthusiasts. We understand the amou
 
 ## a quick look at our lewk.
 
-![benchMark app overview](/src/components/App/images/benchmark-app-full-page-view.png)
+![benchMark app overview](/images/benchmark-app-full-page-view.png)
 
 ## the tech.
 
