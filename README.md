@@ -30,6 +30,7 @@ Here at `benchmark` we are strength-training enthusiasts. We understand the amou
 * [setup](#setup)
   * [local setup](#local-setup)
 * [quick start](#quick-start-scripts)
+* [component overview](#component-overview)
 
 ## a quick look at our lewk.
 
@@ -96,5 +97,10 @@ Start the application
 ````
 npm start
 ````
+
+## component overview.
+
+![benchMark component overview 1](/src/components/App/images/benchmark-component-overview1.png)
+
 
 ## have fun!
