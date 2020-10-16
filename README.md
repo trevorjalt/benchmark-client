@@ -31,6 +31,11 @@ Here at `benchmark` we are strength-training enthusiasts. We understand the amou
   * [local setup](#local-setup)
 * [quick start](#quick-start-scripts)
 * [component overview](#component-overview)
+  * [LandingPage](#LandingPage)
+  * [LoginPage](#LoginPage)
+  * [RegistrationPage](#RegistrationPage)
+  * [MyWorkoutsPage](#MyWorkoutsPage)
+  * [NewWorkoutPage](#NewWorkoutPage)
 
 ## a quick look at our lewk.
 
@@ -100,7 +105,18 @@ npm start
 
 ## component overview.
 
-![benchMark component overview 1](/src/components/App/images/benchmark-component-overview1.png)
+### LandingPage
 
+![benchMark LandingPage component structure](/src/components/App/images/benchmark-component-overview-landing.png)
+
+### LoginPage
+
+### RegistrationPage
+
+### MyWorkoutsPage
+
+![benchMark MyWorkoutsPage component structure](/src/components/App/images/benchmark-component-overview-myworkouts.png)
+
+### NewWorkoutPage 
 
 ## have fun!
