@@ -111,6 +111,8 @@ npm start
 
 ### LoginPage
 
+![benchMark LoginPage component structure](/images/benchmark-component-overview-login.png)
+
 ### RegistrationPage
 
 ![benchMark RegistrationPage component structure](/images/benchmark-component-overview-registration.png)
@@ -120,5 +122,7 @@ npm start
 ![benchMark MyWorkoutsPage component structure](/images/benchmark-component-overview-myworkouts.png)
 
 ### NewWorkoutPage 
+
+![benchMark NewWorkoutPage component structure](/images/benchmark-component-overview-newworkout.png)
 
 ## have fun!
