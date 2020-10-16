@@ -83,5 +83,3 @@ export default class NewWorkoutPage extends Component {
         }         
     }
 }
-
-                

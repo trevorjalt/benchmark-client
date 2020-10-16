@@ -59,6 +59,7 @@ export default class Workout extends Component {
     handleClickComplete = (event) => {
         event.preventDefault()
         const { exerciseSetList = [], onUpdateExerciseSet } = this.context
+        // create an array of objects (with each new object containing the id) from the information received from the grandchild component (ExerciseSet)
         const setsToUpdate = Object.keys(this.state.updateSet).map(key => ({ id: Number(key), ...this.state.updateSet[key] }))
         const updateList = exerciseSetList.map(el => setsToUpdate.find(e => e.id === el.id) || el) 
         const displayList = exerciseSetList.map((item, i) => {
@@ -153,7 +154,6 @@ export default class Workout extends Component {
                 onRepetitionChange={this.onRepetitionChange}
                 onWeightChange={this.onWeightChange}
                 handleClickComplete={this.handleClickComplete}
-        
             />
         )
     }
