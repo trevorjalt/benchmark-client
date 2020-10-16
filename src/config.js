@@ -1,4 +1,4 @@
 export default {
-    API_ENDPOINT: 'http://localhost:8000/api',
+    API_ENDPOINT: 'https://still-fjord-98440.herokuapp.com/',
     TOKEN_KEY: 'benchmark-client-auth-token',
 }
