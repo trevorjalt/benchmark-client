@@ -6,17 +6,28 @@ Strength-training tracking designed with the user in mind.  Create, update, and 
 
 The `benchMark` backend can be found at: [benchMark-server](https://github.com/trevorjalt/benchmark-server/ "benchMark Api")
 
+`benchmark` supports the creation of your own user account.  If you'd like to see it in action before signing up, use the demo account details below.
+
+### demo account details
+
+* username: limitbreaker
+* password: benchMark1!
+
 ## ready to break some limits?
 
 Here at `benchmark` we are strength-training enthusiasts. We understand the amount of stuff you carry at the gym as you work to break your limits. So we're here to help. `benchMark` is an easy solution allowing you to leave that pen and paper at home, and quickly log and track your workout progress in the same device that plays those tunes to keep you pumped up.
 
+`benchMark Client` is designed to seamlessly integrate with your gym routine.  Accidentally close the app?  We've got your back: As long as exercise set information was submitted upon each of their individual completion, you can head over to the myWorkouts page, give the most recent work out a double tap, and tap on that continue button.  Your submitted progress will be reflected, allowing you to pick up right where you left off.  No muss, no fuss.  A sensible way to keep your focus where it belongs: on breaking their limits.
+
 ## table of contents.
 
+* [demo account details](#demo-account-details)
+* [a quick look at our lewk](#a-quick-look-at-our-lewk)
 * [the tech](#the-tech)
-  * [backend](#backend)
+  * [frontend](#frontend)
+  * [testing](#testing)
   * [production](#production)
 * [setup](#setup)
-  * [requirements](#requirements)
   * [local setup](#local-setup)
 * [quick start](#quick-start-scripts)
 
@@ -26,40 +37,36 @@ Here at `benchmark` we are strength-training enthusiasts. We understand the amou
 
 ## the tech.
 
-### backend.
+### frontend.
 
-* Node and Express
-  * Authentication via JWT
-  * RESTful Api
-* Testing
-  * Supertest (integration)
-  * Mocha and Chai (unit)
-* Database
-  * Postgres
-  * Knex.js - SQL wrapper
+* React
+  * Create React App
+  * React Router
+* HTML5
+* CSS3
+
+### testing.
+
+* Enzyme
 
 ### production.
 
-Deployed via Heroku
+* Deployed via Vercel
 
 ## setup.
-
-### requirements.
-* Postgres v8.3.3
-* Node v12.18.3
 
 ### local setup.
 
 Clone this repository to your local machine 
 
 ````
-git clone https://github.com/trevorjalt/benchmark-server benchmark-server
+git clone https://github.com/trevorjalt/benchmark-client benchmark-client
 ````
 
 Change directory into the cloned repository
 
 ````
-cd benchmark-server
+cd benchmark-client
 ````
 
 Make a fresh start of the git history for this project
@@ -74,56 +81,7 @@ Install the node dependencies
 npm install
 ````
 
-Create the development user
-
-````
-createuser -Pw --interactive 
-````
-
-Type `kakarot` for the name of the `role` to add
-
-Select `y` when asked if the user should be a super user
-
-Press `return` (enter) for no password
-
-Create the development databases
-
-````
-createdb -U kakarot -d benchmark && createdb -U kakarot -d benchmark-test
-````
-
-Create a `.env` file in the project root, and include the following:
-
-````
-NODE_ENV=development
-PORT=8000
-DB_URL=postgresql://kakarot@localhost/benchmark
-TEST_DB_URL=postgresql://kakarot@localhost/benchmark-test
-````
-
-Start the Postgres server
-
-````
-pg_ctl start
-````
-
-Run the migrations for the development database
-
-````
-npm run migrate
-````
-
-Run the migrations for the development test database
-
-````
-npm run migrate:test
-````
-
-Seed the development database
-
-````
-psql -U kakarot -d benchmark -f ./seeds/seed.benchmark_tables.sql
-````
+Follow the [setup](https://github.com/trevorjalt/benchmark-server#setup "setup") instructions to get `benchMark Api` up and running.
 
 ## quick start scripts.
 
@@ -137,12 +95,6 @@ Start the application
 
 ````
 npm start
-````
-
-Start nodemon for the application 
-
-````
-npm run dev
 ````
 
 ## have fun!
