@@ -125,4 +125,4 @@ npm start
 
 ![benchMark NewWorkoutPage component structure](/images/benchmark-component-overview-newworkout.png)
 
-## have fun!
+## set your benchMark.  break your limits. 
