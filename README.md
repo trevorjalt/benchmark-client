@@ -107,15 +107,17 @@ npm start
 
 ### LandingPage
 
-![benchMark LandingPage component structure](/src/components/App/images/benchmark-component-overview-landing.png)
+![benchMark LandingPage component structure](/images/benchmark-component-overview-landing.png)
 
 ### LoginPage
 
 ### RegistrationPage
 
+![benchMark RegistrationPage component structure](/images/benchmark-component-overview-registration.png)
+
 ### MyWorkoutsPage
 
-![benchMark MyWorkoutsPage component structure](/src/components/App/images/benchmark-component-overview-myworkouts.png)
+![benchMark MyWorkoutsPage component structure](/images/benchmark-component-overview-myworkouts.png)
 
 ### NewWorkoutPage 
 
