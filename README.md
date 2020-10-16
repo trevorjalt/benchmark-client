@@ -2,7 +2,7 @@
 
 Strength-training tracking designed with the user in mind.  Create, update, and review workouts in real time - with the user remaining in the driver seat for the control of their data.
 
-`benchMark Client` is the frontend for `benchMark`.  To see `benchMark` in action, check out [benchMark-live](https://benchmark-live.vercel.app/ "benchMark").
+`benchMark Client` is the frontend for `benchMark`.  To see `benchMark` in action, check out [benchMark](https://benchmark-live.vercel.app/ "benchMark").
 
 The `benchMark` backend can be found at: [benchMark-server](https://github.com/trevorjalt/benchmark-server/ "benchMark Api")
 
