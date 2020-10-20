@@ -6,7 +6,7 @@ exports[`Utils Component returns a button 1`] = `
 />
 `;
 
-exports[`Utils Component returns a nice date 1`] = `"15th October 2020"`;
+exports[`Utils Component returns a nice date 1`] = `"1st October 2020"`;
 
 exports[`Utils Component returns a section 1`] = `
 <section

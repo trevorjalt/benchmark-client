@@ -6,7 +6,7 @@ import './Utils.css'
 
 describe(`Utils Component`, () => {
     const dateProps = {
-        date: new Date(),
+        date: new Date("October 01, 2020"),
         format: 'do MMMM yyyy',
     }
 
