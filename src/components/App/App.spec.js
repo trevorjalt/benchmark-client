@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { WorkoutProvider } from '../../contexts/WorkoutContext'
-import App from './App';
+import App from './App'
 import { shallow } from 'enzyme'
 
 describe(`App Component`, () => {

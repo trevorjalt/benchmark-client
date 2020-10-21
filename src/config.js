@@ -1,5 +1,5 @@
 let apiPath
-let tokenKey;
+let tokenKey
 
 if (process.env.NODE_ENV === 'production') {
     apiPath = 'https://still-fjord-98440.herokuapp.com/api'
